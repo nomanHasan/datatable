@@ -1,0 +1,19 @@
+.body-section{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+
+    .sidenav{
+        flex: 1;
+
+        .nav{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .middle-section{
+        flex: 5;
+    }
+}

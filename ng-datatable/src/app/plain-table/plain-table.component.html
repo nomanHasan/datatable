@@ -1,0 +1,21 @@
+<app-rowcolumn [(rowNumber)]="rowNumber" [(columnNumber)]="columnNumber"></app-rowcolumn>
+
+<div class="form-group">
+  <button class="btn btn-primary" (click)="render()">Render</button>
+</div>
+<div class="table-container">
+  <table>
+    <tr>
+      <th>Index</th>
+      <th *ngFor="let c of tableData.columns">
+        {{c}}
+      </th>
+    </tr>
+    <tr *ngFor="let row of tableData.tableData; let i = index">
+      <td> {{i}} </td>
+      <td *ngFor="let column of tableData.columns">
+        {{row[column]}}
+      </td>
+    </tr>
+  </table>
+</div>
