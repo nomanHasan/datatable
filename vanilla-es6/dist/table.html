@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Table</title>
+    <style>
+        .ng-table {
+            display: table;
+        }
+
+        .table-header {
+            display: table-header-group;
+        }
+
+        .table-header__row {
+            display: table-row;
+            font-weight: bold;
+        }
+
+        .table-header__cell {
+            display: table-cell;
+        }
+
+        .table-body {
+            display: table-row-group
+        }
+
+        .table-body__row {
+            display: table-row;
+        }
+
+        .table-body__cell {
+            display: table-cell;
+        }
+
+        .table-footer {
+            display: table-footer-group;
+        }
+
+        .table-footer__row {
+            display: table-row;
+        }
+
+        .table-footer__cell {
+            display: table-cell;
+        }
+
+        .cell {
+            padding: 10px 20px 10px 20px;
+            width: 100px;
+            border-left: 1px solid #e8e8e8;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .cell:last-child {
+            border-right: 1px solid #e8e8e8;
+        }
+
+        .table-header__cell.cell {
+            border-top: 1px solid #e8e8e8;
+        }
+
+        .table-body__row.row:hover {
+            box-shadow: 1px 4px 6px 2px #ded6d6;
+        }
+        .table-body__row.row {
+            cursor: pointer;
+        }
+
+
+
+        input[type=text], input[type=email] {
+            width: 100%;
+            border-bottom: 1px solid #5f5f5f;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+
+        input:focus{
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="ng-table">
+        <div class="table-header">
+            <div class="table-header__row row">
+                <div class="table-header__cell cell">
+                    Index
+                </div>
+                <div class="table-header__cell cell">
+                    Name
+                </div>
+                <div class="table-header__cell cell">
+                    Address
+                </div>
+                <div class="table-header__cell cell">
+                    Index
+                </div>
+                <div class="table-header__cell cell">
+                    Name
+                </div>
+                <div class="table-header__cell cell">
+                    Address
+                </div>
+                <div class="table-header__cell cell">
+                    Index
+                </div>
+                <div class="table-header__cell cell">
+                    Name
+                </div>
+                <div class="table-header__cell cell">
+                    Address
+                </div>
+                <div class="table-header__cell cell">
+                    Index
+                </div>
+                <div class="table-header__cell cell">
+                    Name
+                </div>
+                <div class="table-header__cell cell">
+                    Address
+                </div>
+            </div>
+        </div>
+        <div class="table-body">
+            <div class="table-body__row row">
+                <div class="table-body__cell cell">
+                    <input type="email" name="email" id="email">
+                </div>
+                <div class="table-body__cell cell">
+                    <input type="text">
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+            </div>
+            <div class="table-body__row row">
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+            </div>
+            <div class="table-body__row row">
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+            </div>
+            <div class="table-body__row row">
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+            </div>
+            <div class="table-body__row row">
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+            </div>
+            <div class="table-body__row row">
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+            </div>
+            <div class="table-body__row row">
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+            </div>
+            <div class="table-body__row row">
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+            </div>
+            <div class="table-body__row row">
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+                <div class="table-body__cell cell">
+                    0
+                </div>
+                <div class="table-body__cell cell">
+                    Kuddus
+                </div>
+                <div class="table-body__cell cell">
+                    Mia
+                </div>
+            </div>
+
+        </div>
+        <div class="table-footer">
+            <div class="table-footer__row row">
+                <div class="table-footer__cell cell">
+                    3
+                </div>
+                <div class="table-footer__cell cell">
+                    3
+                </div>
+                <div class="table-footer__cell cell">
+                    3
+                </div>
+                <div class="table-footer__cell cell">
+                    3
+                </div>
+                <div class="table-footer__cell cell">
+                    3
+                </div>
+                <div class="table-footer__cell cell">
+                    3
+                </div>
+                <div class="table-footer__cell cell">
+                    3
+                </div>
+                <div class="table-footer__cell cell">
+                    3
+                </div>
+                <div class="table-footer__cell cell">
+                    3
+                </div>
+                <div class="table-footer__cell cell">
+                    3
+                </div>
+                <div class="table-footer__cell cell">
+                    3
+                </div>
+                <div class="table-footer__cell cell">
+                    3
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
