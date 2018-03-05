@@ -1,110 +1,136 @@
-.ng-table{
-    overflow: auto;
+.ng-table {
+  overflow: auto;
 }
 
 .table-header {
-    display: flex;
-    flex-direction: column;
-}
 
-.table-header__row {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+
+  .table-header__row {
+
     font-weight: bold;
-    // width: fit-content;
-
     white-space: nowrap;
-}
+    background: #efe1d154;
+    width: fit-content;
 
-.table-header__cell {
-    display: inline-block;
+    .table-header__cell {
+
+      display: inline-block;
+
+    }
+  }
 }
 
 .table-body {
-    display: block;
-    flex-direction: column;
 
-    height: 500px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
+  display: block;
+  flex-direction: column;
+  height: 500px;
+  overflow-x: hidden;
 
-.table-body__row {
+  .table-body__row {
 
     display: flex;
-
     width: fit-content;
-
     white-space: nowrap;
-}
 
-.table-body__cell {
-    display: table-cell;
+    .table-body__cell {
+
+      display: inline-block;
+      
+    }
+  }
 }
 
 .table-footer {
-    display: flex;
-    flex-direction: column;
-}
 
-.table-footer__row {
-    // width: fit-content;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
 
-    // overflow-x: hidden;
-    // overflow-y: hidden;
+  .table-footer__row {
+
     white-space: nowrap;
-}
+    background: #efe1d154;
+    width: fit-content;
 
-.table-footer__cell {
-    display: inline-block;;
-}
+    .table-footer__cell {
 
+      display: inline-block;
+
+    }
+  }
+}
 
 .table-search {
-    display: flex;
-    flex-direction: column;
-}
 
-.table-search__row {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+
+  .table-search__row {
+
     display: flex;
     flex-direction: row;
     width: fit-content;
+
+    .table-search__cell {
+
+      display: inline-block;
+
+    }
+  }
 }
 
-.table-search__cell {
-    display: inline-block;
+.bottom-border {
+    overflow: auto;
+
+    .bottom-border__body {
+        width: 10000px;
+        height: 5px;
+    }
 }
 
 .cell {
-    padding: 10px 20px 10px 20px;
-    width: 100px;
-    border-left: 1px solid #e8e8e8;
-    border-bottom: 1px solid #e8e8e8;
+  padding: 10px 20px 10px 20px;
+  width: 100px;
+  border-left: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
 }
 
-
 .cell:last-child {
-    border-right: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
 }
 
 .table-header__cell.cell {
-    border-top: 1px solid #e8e8e8;
+  border-top: 1px solid #e8e8e8;
 }
 
 .table-body__row:hover {
-    box-shadow: 1px 4px 6px 2px #ded6d68a;
-    background: #e6e3e33b;
+  box-shadow: 1px 4px 6px 2px #ded6d68a;
+  background: #e6e3e33b;
 }
+
 .table-body__row {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-input[type=text], input[type=email] {
-    width: 100%;
-    border-bottom: 1px solid #5f5f5f;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+input[type=text],
+input[type=email] {
+  width: 100%;
+  border-bottom: 1px solid #5f5f5f;
+  border-top: none;
+  border-left: none;
+  border-right: none;
 }
 
-input:focus{
-    outline: none;
+input:focus {
+  outline: none;
+}
+
+.right-space {
+    display: inline-block;
+    width: 50px;
 }

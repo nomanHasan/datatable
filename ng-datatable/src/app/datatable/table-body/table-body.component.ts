@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'no-table-body',
@@ -12,7 +12,9 @@ export class TableBodyComponent implements OnInit {
   @Input() tableData;
   @Input() columns;
 
-  constructor() { }
+  constructor(
+    public el: ElementRef
+  ) { }
 
   ngOnInit() {
     

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'no-footer',
@@ -10,7 +10,9 @@ export class FooterComponent implements OnInit {
 
   @Input() columns;
 
-  constructor() { }
+  constructor(
+    public el: ElementRef
+  ) { }
 
   ngOnInit() {
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, ViewChild, ElementRef, ComponentRef } from '@angular/core';
 
 @Component({
   selector: 'no-datatable',
@@ -36,9 +36,31 @@ export class DatatableComponent implements OnInit {
     return this._config;
   }
 
+  @ViewChild('header') header: Component;
+  @ViewChild('search') search: Component;
+  @ViewChild('body') body: Component;
+  @ViewChild('footer') footer: Component;
+  @ViewChild('bottomBorder') bottomBorder: Component;
+
   constructor() { }
 
   ngOnInit() {
+    console.log(this.header.el.nativeElement, this.search.el.nativeElement, this.body.el.nativeElement, this.footer.el.nativeElement);
+  }
+
+  onBottomScroll(event) {
+    this.header.el.nativeElement
+    .scrollLeft = this.search.el.nativeElement.
+    scrollLeft = this.body.el.nativeElement.
+    scrollLeft = this.footer.el.nativeElement.
+    scrollLeft = event.target.
+    scrollLeft;
+
+    console.log(event.target.
+      scrollLeft, this.header.el.nativeElement);
+  }
+
+  onRightScroll(event) {
 
   }
 

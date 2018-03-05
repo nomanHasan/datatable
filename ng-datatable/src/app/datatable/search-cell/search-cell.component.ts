@@ -14,7 +14,7 @@ export class SearchCellComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.column);
+    
   }
 
 }

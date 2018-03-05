@@ -1,18 +1,22 @@
 <div class="ng-table">
-  <no-header class="table-header" [columns]="columns">
+  <no-header #header class="table-header" [columns]="columns">
 
   </no-header>
 
-  <no-search class="table-search" [columns]="columns">
+  <no-search #search class="table-search" [columns]="columns">
   </no-search>
 
-  <no-table-body class="table-body"
+  <no-table-body #body class="table-body"
   [tableData]="tableData" 
   [columns]="columns">
 
   </no-table-body>
 
-  <no-footer class="table-footer" [columns]="columns">
+  <no-footer #footer class="table-footer" [columns]="columns">
 
   </no-footer>
+  <div #bottomBorder (scroll)="onBottomScroll($event)" class="bottom-border">
+    <div class="bottom-border__body"></div>
+  </div>
+
 </div>

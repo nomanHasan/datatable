@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'no-search',
@@ -11,7 +11,9 @@ export class SearchComponent implements OnInit {
 
   @Input() columns;
 
-  constructor() { }
+  constructor(
+    public el: ElementRef
+  ) { }
 
   ngOnInit() {
   }
