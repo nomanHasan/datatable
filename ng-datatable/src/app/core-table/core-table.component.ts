@@ -12,7 +12,7 @@ export class CoreTableComponent implements OnInit {
   rowNumber = 200;
   columnNumber = 100;
 
-  wholeData = TableData.getTableData(this.rowNumber, this.columnNumber);
+  combinedData = TableData.getTableData(this.rowNumber, this.columnNumber);
 
   tableData;
   columns;
@@ -21,8 +21,8 @@ export class CoreTableComponent implements OnInit {
 
   ngOnInit() {
 
-    this.tableData = this.wholeData.tableData;
-    this.columns = this.wholeData.columns.map(c => ({
+    this.tableData = this.combinedData.tableData;
+    this.columns = this.combinedData.columns.map(c => ({
       name: c
     }));
 

@@ -13,12 +13,16 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'core',
+    loadChildren: './core-table/core-table.module#CoreTableModule'
+  },
+  {
     path: 'plain',
     loadChildren: './plain-table/plain-table.module#PlainTableModule'
   },
   {
-    path: 'core',
-    loadChildren: './core-table/core-table.module#CoreTableModule'
+    path: 'performance',
+    loadChildren: './performance/performance.module#PerformanceModule'
   },
   {
     path: 'es6',
