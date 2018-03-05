@@ -1,3 +1,18 @@
-<p>
-  datatable works!
-</p>
+<div class="ng-table">
+  <no-header class="table-header" [columns]="columns">
+
+  </no-header>
+
+  <no-search class="table-search" [columns]="columns">
+  </no-search>
+
+  <no-table-body class="table-body"
+  [tableData]="tableData" 
+  [columns]="columns">
+
+  </no-table-body>
+
+  <no-footer class="table-footer" [columns]="columns">
+
+  </no-footer>
+</div>

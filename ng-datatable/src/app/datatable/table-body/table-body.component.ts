@@ -1,0 +1,21 @@
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+
+@Component({
+  selector: 'no-table-body',
+  templateUrl: './table-body.component.html',
+  styleUrls: ['./table-body.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class TableBodyComponent implements OnInit {
+
+
+  @Input() tableData;
+  @Input() columns;
+
+  constructor() { }
+
+  ngOnInit() {
+    
+  }
+
+}

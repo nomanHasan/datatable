@@ -1,0 +1,110 @@
+.ng-table{
+    overflow: auto;
+}
+
+.table-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-header__row {
+    font-weight: bold;
+    // width: fit-content;
+
+    white-space: nowrap;
+}
+
+.table-header__cell {
+    display: inline-block;
+}
+
+.table-body {
+    display: block;
+    flex-direction: column;
+
+    height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.table-body__row {
+
+    display: flex;
+
+    width: fit-content;
+
+    white-space: nowrap;
+}
+
+.table-body__cell {
+    display: table-cell;
+}
+
+.table-footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-footer__row {
+    // width: fit-content;
+
+    // overflow-x: hidden;
+    // overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.table-footer__cell {
+    display: inline-block;;
+}
+
+
+.table-search {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-search__row {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+
+.table-search__cell {
+    display: inline-block;
+}
+
+.cell {
+    padding: 10px 20px 10px 20px;
+    width: 100px;
+    border-left: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+
+.cell:last-child {
+    border-right: 1px solid #e8e8e8;
+}
+
+.table-header__cell.cell {
+    border-top: 1px solid #e8e8e8;
+}
+
+.table-body__row:hover {
+    box-shadow: 1px 4px 6px 2px #ded6d68a;
+    background: #e6e3e33b;
+}
+.table-body__row {
+    cursor: pointer;
+}
+
+input[type=text], input[type=email] {
+    width: 100%;
+    border-bottom: 1px solid #5f5f5f;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+input:focus{
+    outline: none;
+}
