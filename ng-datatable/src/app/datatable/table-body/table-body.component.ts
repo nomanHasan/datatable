@@ -10,6 +10,7 @@ export class TableBodyComponent implements OnInit {
 
 
   @Input() tableData;
+  @Input() rows;
   @Input() columns;
 
   constructor(

@@ -2,6 +2,8 @@
 class="table-footer__cell cell"
 *ngFor="let column of columns"
 [column] = "column"
+
+[style.width.px]="column.width"
 >
 
 </no-footer-cell>

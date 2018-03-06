@@ -23,7 +23,8 @@ export class CoreTableComponent implements OnInit {
 
     this.tableData = this.combinedData.tableData;
     this.columns = this.combinedData.columns.map(c => ({
-      name: c
+      name: c,
+      width: 200
     }));
 
     console.log(this.tableData, this.columns);

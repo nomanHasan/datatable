@@ -1,10 +1,13 @@
-import { Component, OnInit, Input, ViewEncapsulation, ViewChild, ElementRef, ComponentRef } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, ViewChild, ElementRef, ComponentRef, ChangeDetectionStrategy } from '@angular/core';
+import { TableStore } from './store/table.store';
 
 @Component({
   selector: 'no-datatable',
   templateUrl: './datatable.component.html',
   styleUrls: ['./datatable.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  providers: [TableStore],
+  encapsulation: ViewEncapsulation.None,
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DatatableComponent implements OnInit {
 
@@ -36,16 +39,25 @@ export class DatatableComponent implements OnInit {
     return this._config;
   }
 
-  @ViewChild('header') header: Component;
-  @ViewChild('search') search: Component;
-  @ViewChild('body') body: Component;
-  @ViewChild('footer') footer: Component;
-  @ViewChild('bottomBorder') bottomBorder: Component;
+  @ViewChild('header') header: any;
+  @ViewChild('search') search: any;
+  @ViewChild('body') body: any;
+  @ViewChild('footer') footer: any;
+  @ViewChild('bottomBorder') bottomBorder: any;
 
-  constructor() { }
+  constructor(
+    public store: TableStore
+  ) { }
 
   ngOnInit() {
     console.log(this.header.el.nativeElement, this.search.el.nativeElement, this.body.el.nativeElement, this.footer.el.nativeElement);
+    this.store.rows$.subscribe(value => {
+      console.log(value);
+    });
+
+    this.store.setRows(this.tableData);
+    this.store.setColumns(this.columns.slice(0, 10));
+
   }
 
   onBottomScroll(event) {
@@ -55,9 +67,6 @@ export class DatatableComponent implements OnInit {
     scrollLeft = this.footer.el.nativeElement.
     scrollLeft = event.target.
     scrollLeft;
-
-    console.log(event.target.
-      scrollLeft, this.header.el.nativeElement);
   }
 
   onRightScroll(event) {

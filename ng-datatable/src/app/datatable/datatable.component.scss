@@ -20,6 +20,11 @@
       display: inline-block;
 
     }
+
+    .right-space {
+      height: 5px;
+      width: 61px;
+    }
   }
 }
 
@@ -41,6 +46,7 @@
       display: inline-block;
       
     }
+    
   }
 }
 
@@ -61,6 +67,11 @@
       display: inline-block;
 
     }
+
+    .right-space {
+      height: 5px;
+      width: 61px;
+    }
   }
 }
 
@@ -80,6 +91,11 @@
 
       display: inline-block;
 
+    }
+
+    .right-space {
+      height: 5px;
+      width: 65px;
     }
   }
 }
@@ -129,6 +145,7 @@ input[type=email] {
 input:focus {
   outline: none;
 }
+
 
 .right-space {
     display: inline-block;

@@ -1,0 +1,13 @@
+<no-cell 
+class="table-body__cell cell"
+*ngFor="let cell of columns"
+[data]="row.cells.get(cell.name)"
+[column]="cell"
+[style.width.px]="cell.width"
+>
+
+</no-cell>
+
+<div class="right-space">
+    
+</div>

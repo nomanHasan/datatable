@@ -1,7 +1,10 @@
 <no-header-cell 
 class="table-header__cell cell" 
-*ngFor="let c of columns" 
-[column]="c"></no-header-cell>
+*ngFor="let column of columns" 
+[column]="column"
+
+[style.width.px]="column.width"
+></no-header-cell>
 
 <div class="right-space">
     

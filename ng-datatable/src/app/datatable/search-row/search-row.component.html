@@ -2,6 +2,7 @@
 class="table-search__cell cell"
 *ngFor="let column of columns"
 [column] = "column"
+[style.width.px]="column.width"
 ></no-search-cell>
 
 

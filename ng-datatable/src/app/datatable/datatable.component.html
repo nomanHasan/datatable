@@ -1,18 +1,19 @@
 <div class="ng-table">
-  <no-header #header class="table-header" [columns]="columns">
+  <no-header #header class="table-header" [columns]="store.columns$ | async">
 
   </no-header>
 
-  <no-search #search class="table-search" [columns]="columns">
+  <no-search #search class="table-search" [columns]="store.columns$ | async">
   </no-search>
 
   <no-table-body #body class="table-body"
-  [tableData]="tableData" 
-  [columns]="columns">
+  [tableData]="tableData"
+  [rows]="store.rows$ | async"
+  [columns]="store.columns$ | async">
 
   </no-table-body>
 
-  <no-footer #footer class="table-footer" [columns]="columns">
+  <no-footer #footer class="table-footer" [columns]="store.columns$ | async">
 
   </no-footer>
   <div #bottomBorder (scroll)="onBottomScroll($event)" class="bottom-border">
