@@ -2,7 +2,7 @@
 class="table-header__cell cell" 
 *ngFor="let column of columns" 
 [column]="column"
-
+[mouseEvent]="mouseEvent"
 [style.width.px]="column.width"
 ></no-header-cell>
 

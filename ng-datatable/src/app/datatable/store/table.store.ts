@@ -12,7 +12,7 @@ export class TableStore {
 
   constructor() {
 
-   }
+  }
 
   private rowSubject = new BehaviorSubject<RowState[]>(undefined);
 
@@ -22,6 +22,10 @@ export class TableStore {
 
   columns$: Observable<any[]> = this.columnSubject.asObservable();
 
+  private scrollSubject = new BehaviorSubject<any>(undefined);
+
+  scroll$: Observable<any> = this.scrollSubject.asObservable();
+
 
   setRows(rowsData) {
 
@@ -29,10 +33,20 @@ export class TableStore {
     console.log(rowsData);
 
     this.rowSubject.next(rows);
+
   }
 
   setColumns(columns) {
     this.columnSubject.next(columns);
+
+
+    const scroll = {
+      width: columns.reduce((sum, c) => {
+        sum += c.width;
+        return sum;
+      }, 0) + 50
+    };
+    this.scrollSubject.next(scroll);
   }
 
 

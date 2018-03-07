@@ -9,7 +9,7 @@ import { TableData } from '../table-data/table-data.model';
 export class CoreTableComponent implements OnInit {
 
 
-  rowNumber = 200;
+  rowNumber = 2000;
   columnNumber = 100;
 
   combinedData = TableData.getTableData(this.rowNumber, this.columnNumber);

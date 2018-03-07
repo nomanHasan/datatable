@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy, HostListener } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'no-header-row',
@@ -12,9 +13,24 @@ export class HeaderRowComponent implements OnInit {
 
   @Input() columns;
 
+  mouseEvent: Subject<any> = new Subject<any>();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+
+  @HostListener('mousemove', ['$event']) mousemove(event) {
+
+    this.mouseEvent.next(event);
+
+  }
+
+  @HostListener('mouseup', ['$event']) mouseup(event) {
+
+    this.mouseEvent.next(event);
+
   }
 
 }

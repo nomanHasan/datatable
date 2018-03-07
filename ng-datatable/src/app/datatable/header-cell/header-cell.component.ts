@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'no-header-cell',
@@ -11,10 +12,24 @@ export class HeaderCellComponent implements OnInit {
 
 
   @Input() column;
+  @Input() mouseEvent: Subject<any>;
+
+  mouseState = {
+    down: false
+  };
 
   constructor() { }
 
   ngOnInit() {
+
+    this.mouseEvent.subscribe(res => {
+      console.log(res);
+    });
+
+  }
+
+  mousedownDivider(event) {
+    this.mouseState.down = true;
   }
 
 }
