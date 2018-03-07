@@ -1,5 +1,5 @@
 
-import { IColumn } from './column.model';
+import { Column } from './column.model';
 
 export const LEFT = 'left';
 
@@ -20,7 +20,7 @@ export function initializeColumn(
     format = {
         value: 'plain'
     }
-): IColumn {
+): Column {
     if (displayValue.length === 0) {
         displayValue = getDisplayValue(name);
     }
@@ -45,7 +45,7 @@ export function initColumnWithConfig({
     format = {
         value: 'plain'
     }
-}): IColumn {
+}): Column {
     return {
         name,
         type,

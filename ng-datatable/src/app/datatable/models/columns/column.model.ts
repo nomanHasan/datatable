@@ -1,4 +1,4 @@
-export interface IColumn {
+export interface Column {
     name: string;
     type: string;
     width: number;

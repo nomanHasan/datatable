@@ -24,12 +24,17 @@ export class HeaderCellComponent implements OnInit {
 
     this.mouseEvent.subscribe(res => {
       console.log(res);
+      this.mouseeventHander(res);
     });
 
   }
 
   mousedownDivider(event) {
     this.mouseState.down = true;
+  }
+
+  mouseeventHander(event) {
+    
   }
 
 }

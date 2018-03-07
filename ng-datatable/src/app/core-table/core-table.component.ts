@@ -9,7 +9,7 @@ import { TableData } from '../table-data/table-data.model';
 export class CoreTableComponent implements OnInit {
 
 
-  rowNumber = 2000;
+  rowNumber = 200;
   columnNumber = 100;
 
   combinedData = TableData.getTableData(this.rowNumber, this.columnNumber);
@@ -27,7 +27,15 @@ export class CoreTableComponent implements OnInit {
       width: 200
     }));
 
-    console.log(this.tableData, this.columns);
+    // setInterval(() => {
+    //   this.combinedData = TableData.getTableData(this.rowNumber, this.columnNumber);
+    //   this.tableData = this.combinedData.tableData;
+    //   this.columns = this.combinedData.columns.slice(0, parseInt(Math.random() * 99, 10)).map(c => ({
+    //     name: c,
+    //     width: 200
+    //   }));
+    //   console.log(this.columns);
+    // }, 10000);
 
   }
 

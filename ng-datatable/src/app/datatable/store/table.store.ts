@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { RowState } from '../models/row/row-state.model';
 import { SchemaMapper } from './schema-mapper';
+import { TableState, initializeTableState } from '../models/table-state.model';
 
 @Injectable()
 export class TableStore {
@@ -26,18 +27,35 @@ export class TableStore {
 
   scroll$: Observable<any> = this.scrollSubject.asObservable();
 
+  private tableStateSubject = new BehaviorSubject<TableState>(initializeTableState());
+
+  tableState$: Observable<any> = this.tableStateSubject.asObservable();
+
+  tableState: TableState;
 
   setRows(rowsData) {
 
-    const rows = this.schemaMapper.fromTabledata(rowsData);
+    const rows: RowState[] = this.schemaMapper.fromTabledata(rowsData);
     console.log(rowsData);
 
-    this.rowSubject.next(rows);
+    this.tableState = this.tableStateSubject.getValue();
+
+    this.tableState = {
+      ...this.tableState,
+      rows: rows
+    };
+
+
+    console.log(this.tableState);
+
+    if (this.tableState.columns && this.tableState.columns.length > 0) {
+      this.tableStateSubject.next(this.tableState);
+    }
 
   }
 
   setColumns(columns) {
-    this.columnSubject.next(columns);
+    // this.columnSubject.next(columns);
 
 
     const scroll = {
@@ -46,7 +64,18 @@ export class TableStore {
         return sum;
       }, 0) + 50
     };
-    this.scrollSubject.next(scroll);
+    // this.scrollSubject.next(scroll);
+
+    this.tableState = {
+      ...this.tableState,
+      columns: columns,
+      scroll: scroll
+    };
+
+    if (this.tableState.rows && this.tableState.rows.length > 0) {
+      this.tableStateSubject.next(this.tableState);
+    }
+
   }
 
 

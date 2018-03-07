@@ -1,5 +1,5 @@
-import { ICell } from '../cell/cell.model';
+import { Cell } from '../cell/cell.model';
 
-export interface IRow {
-    cells?: any;
+export interface Row {
+    cells?: Cell[];
 }

@@ -15,6 +15,7 @@ export class DatatableComponent implements OnInit {
   _tableData;
   @Input() set tableData(value) {
     this._tableData = value;
+    this.store.setRows(this._tableData);
   }
 
   get tableData() {
@@ -24,6 +25,8 @@ export class DatatableComponent implements OnInit {
   _columns;
   @Input() set columns(value) {
     this._columns = value;
+    this.store.setColumns(this._columns.slice(0, 30));
+    console.log(value);
   }
 
   get columns() {
@@ -50,13 +53,15 @@ export class DatatableComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.header.el.nativeElement, this.search.el.nativeElement, this.body.el.nativeElement, this.footer.el.nativeElement);
+    // console.log(this.header.el.nativeElement, this.search.el.nativeElement, this.body.el.nativeElement, this.footer.el.nativeElement);
     this.store.rows$.subscribe(value => {
       console.log(value);
     });
 
+    this.store.tableState$.subscribe(res => console.log(res));
+
     this.store.setRows(this.tableData);
-    this.store.setColumns(this.columns.slice(0, 10));
+    // this.store.setColumns(this.columns.slice(0, 10));
 
   }
 

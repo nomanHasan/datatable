@@ -1,4 +1,4 @@
-import { ICell } from './cell.model';
+import { Cell } from './cell.model';
 
 export class CellState {
 
@@ -13,7 +13,7 @@ export class CellState {
     }
 
 
-    getCell(): ICell {
+    getCell(): Cell {
         return {
             key: this.key,
             data: this.data,
