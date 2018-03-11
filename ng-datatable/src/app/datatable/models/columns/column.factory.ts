@@ -1,5 +1,6 @@
 
 import { Column } from './column.model';
+import { defaultDividerState } from './divider-state.model';
 
 export const LEFT = 'left';
 
@@ -10,7 +11,7 @@ export const CENTER = 'center';
 export const EMPTY = '';
 
 
-export function initializeColumn(
+export function createColumn(
     name: string,
     type: string,
     width: number = 200,
@@ -19,7 +20,8 @@ export function initializeColumn(
     alignment: string = LEFT,
     format = {
         value: 'plain'
-    }
+    },
+    dividerState = defaultDividerState()
 ): Column {
     if (displayValue.length === 0) {
         displayValue = getDisplayValue(name);
@@ -31,11 +33,12 @@ export function initializeColumn(
         width,
         displayValue,
         editable,
-        alignment
+        alignment,
+        dividerState
     };
 }
 
-export function initColumnWithConfig({
+export function createColumnWithConfig({
     name = '',
     type = '',
     width = 0,
@@ -44,7 +47,8 @@ export function initColumnWithConfig({
     alignment = LEFT,
     format = {
         value: 'plain'
-    }
+    },
+    dividerState = defaultDividerState()
 }): Column {
     return {
         name,
@@ -53,7 +57,8 @@ export function initColumnWithConfig({
         displayValue,
         editable,
         alignment,
-        format
+        format,
+        dividerState
     };
 }
 

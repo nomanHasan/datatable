@@ -1,9 +1,14 @@
 <div class="header-cell__span">
-    {{column.name}}
+    {{column.name}} {{column.dividerState.left}}
 </div>
 
-<div class="v-divider"
+<div #vDivider class="v-divider"
+[ngStyle]="{
+    'left': column.dividerState.left + 'px',
+    'width':  column.dividerState.width + 'px'
+}"
 (mousedown)="mousedownDivider($event)"
+(mousemove)="mouseMove($event)"
 >
     
 </div>

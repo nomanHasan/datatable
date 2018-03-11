@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy, HostListener } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy, HostListener, EventEmitter, Output } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 @Component({
@@ -12,6 +12,9 @@ export class HeaderRowComponent implements OnInit {
 
 
   @Input() columns;
+
+
+  @Output() dividerStateChanged = new EventEmitter<any>();
 
   mouseEvent: Subject<any> = new Subject<any>();
 
@@ -30,6 +33,10 @@ export class HeaderRowComponent implements OnInit {
   @HostListener('mouseup', ['$event']) mouseup(event) {
 
     this.mouseEvent.next(event);
+
+  }
+
+  onDividerStateChanged($event) {
 
   }
 

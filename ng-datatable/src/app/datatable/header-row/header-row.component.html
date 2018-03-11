@@ -1,9 +1,13 @@
 <no-header-cell 
 class="table-header__cell cell" 
 *ngFor="let column of columns" 
+
 [column]="column"
 [mouseEvent]="mouseEvent"
 [style.width.px]="column.width"
+
+(dividerStateChanged)="onDividerStateChanged($event)"
+
 ></no-header-cell>
 
 <div class="right-space">

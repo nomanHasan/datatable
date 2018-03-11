@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TableData } from '../table-data/table-data.model';
+import { createColumnWithConfig } from '../datatable/models/columns/column.factory';
 
 @Component({
   selector: 'no-core-table',
@@ -22,10 +23,13 @@ export class CoreTableComponent implements OnInit {
   ngOnInit() {
 
     this.tableData = this.combinedData.tableData;
-    this.columns = this.combinedData.columns.map(c => ({
-      name: c,
-      width: 200
-    }));
+
+    this.columns = this.combinedData.columns.map(c => (
+      createColumnWithConfig({
+          name: c,
+          width: 200
+        })
+      ));
 
     // setInterval(() => {
     //   this.combinedData = TableData.getTableData(this.rowNumber, this.columnNumber);

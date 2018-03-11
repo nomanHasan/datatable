@@ -25,7 +25,7 @@ export class DatatableComponent implements OnInit {
   _columns;
   @Input() set columns(value) {
     this._columns = value;
-    this.store.setColumns(this._columns.slice(0, 30));
+    this.store.setColumns(this._columns);
     console.log(value);
   }
 
