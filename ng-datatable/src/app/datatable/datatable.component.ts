@@ -78,4 +78,9 @@ export class DatatableComponent implements OnInit {
 
   }
 
+  onColumnChanged(event) {
+    console.log(event);
+    this.store.updateColumn(event);
+  }
+
 }

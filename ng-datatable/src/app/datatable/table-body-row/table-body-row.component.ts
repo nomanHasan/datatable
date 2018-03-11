@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { RowState } from '../models/row/row-state.model';
+import { Column } from '../models/columns/column.model';
 
 @Component({
   selector: 'no-table-body-row',
@@ -11,7 +12,7 @@ export class RowComponent implements OnInit {
 
 
   @Input() row: RowState;
-  @Input() columns;
+  @Input() columns: Column[];
 
 
   // get cells() {
@@ -27,7 +28,7 @@ export class RowComponent implements OnInit {
 
   ngOnInit() {
 
-    // console.log(this.row);
+    console.log('Row Init');
 
   }
 

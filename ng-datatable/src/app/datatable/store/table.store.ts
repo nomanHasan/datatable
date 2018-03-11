@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { RowState } from '../models/row/row-state.model';
 import { SchemaMapper } from './schema-mapper';
 import { TableState, initializeTableState } from '../models/table-state.model';
+import { Column } from '../models/columns/column.model';
 
 @Injectable()
 export class TableStore {
@@ -76,6 +77,22 @@ export class TableStore {
       this.tableStateSubject.next(this.tableState);
     }
 
+  }
+
+  updateColumn(column: Column) {
+    let col = this.tableState.columns.find(c => c.name === column.name);
+    column.width = column.dividerState.left + column.dividerState.leftOffset;
+    col = {
+      ...col,
+      ...column
+    };
+    this.tableState = {
+      ...this.tableState,
+      columns: [
+        ...this.tableState.columns
+      ]
+    };
+    this.tableStateSubject.next(this.tableState);
   }
 
 

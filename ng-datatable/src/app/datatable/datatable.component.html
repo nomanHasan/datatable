@@ -1,5 +1,11 @@
 <div class="ng-table" *ngIf="store.tableState$ | async as tableState">
-  <no-header #header class="table-header" [columns]="tableState.columns">
+  <no-header 
+  #header 
+  class="table-header" 
+  [columns]="tableState.columns"
+  
+  (columnChanged)="onColumnChanged($event)"
+  >
 
   </no-header>
 
@@ -9,7 +15,8 @@
   <no-table-body #body class="table-body"
   [tableData]="tableData"
   [rows]="tableState.rows"
-  [columns]="tableState.columns">
+  [columns]="tableState.columns"
+  >
 
   </no-table-body>
 

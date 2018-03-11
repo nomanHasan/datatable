@@ -1,3 +1,5 @@
 <no-header-row  
 class="table-header__row" 
-[columns]="columns" ></no-header-row>
+[columns]="columns" 
+(columnChanged)="onColumnChanged($event)"
+></no-header-row>

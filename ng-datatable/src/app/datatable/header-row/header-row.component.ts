@@ -14,7 +14,7 @@ export class HeaderRowComponent implements OnInit {
   @Input() columns;
 
 
-  @Output() dividerStateChanged = new EventEmitter<any>();
+  @Output() columnChanged = new EventEmitter<any>();
 
   mouseEvent: Subject<any> = new Subject<any>();
 
@@ -36,8 +36,8 @@ export class HeaderRowComponent implements OnInit {
 
   }
 
-  onDividerStateChanged($event) {
-
+  onColumnChanged(event) {
+    this.columnChanged.emit(event);
   }
 
 }

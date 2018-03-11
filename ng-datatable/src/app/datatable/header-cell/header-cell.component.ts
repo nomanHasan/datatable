@@ -16,12 +16,7 @@ export class HeaderCellComponent implements OnInit {
   @Input() column: Column;
   @Input() mouseEvent: Subject<any>;
 
-  // @Input() dividerState = {
-  //   columnName: this.column.name,
-  //   left: 0,
-  //   width: 20,
-  //   leftOffset: 11 // = (width / 2) + 1
-  // };
+  @Output() columnChanged = new EventEmitter<any>();
 
   mouseState = {
     down: false,
@@ -76,6 +71,7 @@ export class HeaderCellComponent implements OnInit {
 
   mouseUp(event) {
     this.mouseState.down = false;
+    this.columnChanged.emit(this.column);
   }
 
   mouseeventHander(event) {

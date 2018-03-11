@@ -19,7 +19,7 @@ export class CellComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
+    console.log('CELL INIT');
   }
 
 }

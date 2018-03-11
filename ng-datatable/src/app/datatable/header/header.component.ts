@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy, ElementRef, EventEmitter, Output } from '@angular/core';
+
 
 @Component({
   selector: 'no-header',
@@ -10,12 +11,17 @@ import { Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy, E
 export class HeaderComponent implements OnInit {
 
   @Input() columns;
+  @Output() columnChanged = new EventEmitter<any>();
 
   constructor(
     public el: ElementRef
   ) { }
 
   ngOnInit() {
+  }
+
+  onColumnChanged(event) {
+    this.columnChanged.emit(event);
   }
 
 }
