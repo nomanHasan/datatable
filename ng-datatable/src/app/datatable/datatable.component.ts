@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation, ViewChild, ElementRef, ComponentRef, ChangeDetectionStrategy } from '@angular/core';
 import { TableStore } from './store/table.store';
+import { COLUMN_RESIZE } from './store/actions/column.action';
 
 @Component({
   selector: 'no-datatable',
@@ -53,11 +54,6 @@ export class DatatableComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log(this.header.el.nativeElement, this.search.el.nativeElement, this.body.el.nativeElement, this.footer.el.nativeElement);
-    this.store.rows$.subscribe(value => {
-      console.log(value);
-    });
-
     this.store.tableState$.subscribe(res => console.log(res));
 
     this.store.setRows(this.tableData);
@@ -79,8 +75,15 @@ export class DatatableComponent implements OnInit {
   }
 
   onColumnChanged(event) {
-    console.log(event);
-    this.store.updateColumn(event);
+
+    this.store.dispatch({
+      type: COLUMN_RESIZE,
+      payload: {
+        column: event,
+        dividerState: event.dividerState
+      }
+    });
+    // this.store.updateColumn(event);
   }
 
 }

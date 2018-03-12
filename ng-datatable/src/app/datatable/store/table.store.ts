@@ -6,6 +6,8 @@ import { RowState } from '../models/row/row-state.model';
 import { SchemaMapper } from './schema-mapper';
 import { TableState, initializeTableState } from '../models/table-state.model';
 import { Column } from '../models/columns/column.model';
+import { Action } from './actions/action.model';
+import { tableReducer } from './reducers/table.reducer';
 
 @Injectable()
 export class TableStore {
@@ -16,17 +18,17 @@ export class TableStore {
 
   }
 
-  private rowSubject = new BehaviorSubject<RowState[]>(undefined);
+  // private rowSubject = new BehaviorSubject<RowState[]>(undefined);
 
-  rows$: Observable<RowState[]> = this.rowSubject.asObservable();
+  // rows$: Observable<RowState[]> = this.rowSubject.asObservable();
 
-  private columnSubject = new BehaviorSubject<any[]>(undefined);
+  // private columnSubject = new BehaviorSubject<any[]>(undefined);
 
-  columns$: Observable<any[]> = this.columnSubject.asObservable();
+  // columns$: Observable<any[]> = this.columnSubject.asObservable();
 
-  private scrollSubject = new BehaviorSubject<any>(undefined);
+  // private scrollSubject = new BehaviorSubject<any>(undefined);
 
-  scroll$: Observable<any> = this.scrollSubject.asObservable();
+  // scroll$: Observable<any> = this.scrollSubject.asObservable();
 
   private tableStateSubject = new BehaviorSubject<TableState>(initializeTableState());
 
@@ -92,6 +94,12 @@ export class TableStore {
         ...this.tableState.columns
       ]
     };
+    this.tableStateSubject.next(this.tableState);
+  }
+
+  dispatch(action: Action) {
+    this.tableState = tableReducer(this.tableState, action);
+    console.log(this.tableState);
     this.tableStateSubject.next(this.tableState);
   }
 

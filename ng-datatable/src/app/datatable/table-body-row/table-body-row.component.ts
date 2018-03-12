@@ -14,22 +14,16 @@ export class RowComponent implements OnInit {
   @Input() row: RowState;
   @Input() columns: Column[];
 
-
-  // get cells() {
-
-  //   this.columns.map(c => {
-      
-  //   })
-
-  //   this.row.cells
-  // }
-
   constructor() { }
 
   ngOnInit() {
 
     console.log('Row Init');
 
+  }
+
+  columnTracker(index, column: Column) {
+    return column ? column.name : undefined;
   }
 
 }

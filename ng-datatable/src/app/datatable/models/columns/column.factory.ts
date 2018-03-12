@@ -1,6 +1,7 @@
 
 import { Column } from './column.model';
 import { defaultDividerState } from './divider-state.model';
+import { SortDirections } from '../sort/sort-direction.model';
 
 export const LEFT = 'left';
 
@@ -21,7 +22,8 @@ export function createColumn(
     format = {
         value: 'plain'
     },
-    dividerState = defaultDividerState()
+    dividerState = defaultDividerState(),
+    sort: SortDirections = SortDirections.NONE
 ): Column {
     if (displayValue.length === 0) {
         displayValue = getDisplayValue(name);
@@ -34,7 +36,8 @@ export function createColumn(
         displayValue,
         editable,
         alignment,
-        dividerState
+        dividerState,
+        sort
     };
 }
 
@@ -48,7 +51,8 @@ export function createColumnWithConfig({
     format = {
         value: 'plain'
     },
-    dividerState = defaultDividerState()
+    dividerState = defaultDividerState(),
+    sort = SortDirections.NONE
 }): Column {
     return {
         name,
@@ -58,7 +62,8 @@ export function createColumnWithConfig({
         editable,
         alignment,
         format,
-        dividerState
+        dividerState,
+        sort
     };
 }
 

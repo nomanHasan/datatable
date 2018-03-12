@@ -2,6 +2,9 @@ import { Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy,
    ElementRef, ViewChild, ChangeDetectorRef, EventEmitter, Output } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Column } from '../models/columns/column.model';
+import { SortDirections, toggleSortDirection } from '../models/sort/sort-direction.model';
+import { TableStore } from '../store/table.store';
+import { SortColumn } from '../store/actions/column.action';
 
 @Component({
   selector: 'no-header-cell',
@@ -17,6 +20,7 @@ export class HeaderCellComponent implements OnInit {
   @Input() mouseEvent: Subject<any>;
 
   @Output() columnChanged = new EventEmitter<any>();
+  @Output() action = new EventEmitter<any>();
 
   mouseState = {
     down: false,
@@ -29,6 +33,7 @@ export class HeaderCellComponent implements OnInit {
 
   constructor(
     private el: ElementRef,
+    private store: TableStore,
     private cd: ChangeDetectorRef
   ) { }
 
@@ -93,6 +98,11 @@ export class HeaderCellComponent implements OnInit {
         break;
       }
     }
+  }
+
+  cellClicked(event) {
+    const sort = toggleSortDirection(this.column.sort);
+    this.action.emit(new SortColumn({column: this.column, sort}));
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, HostBinding, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'no-cell',
@@ -16,10 +16,13 @@ export class CellComponent implements OnInit {
     return this.column.width || 100;
   }
 
-  constructor() { }
+  constructor(
+    private cd: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
     console.log('CELL INIT');
+    // this.cd.detach();
   }
 
 }

@@ -1,6 +1,7 @@
 <no-cell 
 class="table-body__cell cell"
-*ngFor="let cell of columns"
+*ngFor="let cell of columns; trackBy:columnTracker"
+
 [data]="row.cells[cell.name]"
 [column]="cell"
 [style.width.px]="cell.width"
