@@ -22,11 +22,11 @@ export class SortColumn implements Action {
 
 
 export class ResizeColumn implements Action {
-    readonly type = COLUMN_SORT;
+    readonly type = COLUMN_RESIZE;
 
     constructor(public payload: {
         column: Column,
-        divider: DividerState
+        dividerState: DividerState
     }) {
 
     }

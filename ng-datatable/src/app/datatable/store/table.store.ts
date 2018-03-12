@@ -83,7 +83,7 @@ export class TableStore {
 
   updateColumn(column: Column) {
     let col = this.tableState.columns.find(c => c.name === column.name);
-    column.width = column.dividerState.left + column.dividerState.leftOffset;
+    // column.width = column.dividerState.left + column.dividerState.leftOffset;
     col = {
       ...col,
       ...column

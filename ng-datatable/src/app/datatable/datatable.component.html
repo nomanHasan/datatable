@@ -3,8 +3,7 @@
   #header 
   class="table-header" 
   [columns]="tableState.columns"
-  
-  (columnChanged)="onColumnChanged($event)"
+  [dividerConfig]="tableState.dividerConfig"
   (action)="onAction($event)"
   >
 

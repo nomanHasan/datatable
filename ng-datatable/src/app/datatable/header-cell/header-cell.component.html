@@ -1,11 +1,11 @@
 <div class="header-cell__span" (click)="cellClicked($event)" >
-    {{column.name}} {{column.dividerState.left}}
+    {{column.name}} {{dividerState.left}}
 </div>
 
 <div #vDivider class="v-divider"
 [ngStyle]="{
-    'left': column.dividerState.left + 'px',
-    'width':  column.dividerState.width + 'px'
+    'left': dividerState.left + 'px',
+    'width':  dividerConfig.width + 'px'
 }"
 (mousedown)="mousedownDivider($event)"
 (mousemove)="mouseMove($event)"

@@ -4,7 +4,8 @@ import { Subject } from 'rxjs/Subject';
 import { Column } from '../models/columns/column.model';
 import { SortDirections, toggleSortDirection } from '../models/sort/sort-direction.model';
 import { TableStore } from '../store/table.store';
-import { SortColumn } from '../store/actions/column.action';
+import { SortColumn, ResizeColumn } from '../store/actions/column.action';
+import { DividerConfig } from '../models/columns/divider-config.model';
 
 @Component({
   selector: 'no-header-cell',
@@ -18,9 +19,15 @@ export class HeaderCellComponent implements OnInit {
 
   @Input() column: Column;
   @Input() mouseEvent: Subject<any>;
+  @Input() dividerConfig: DividerConfig;
 
-  @Output() columnChanged = new EventEmitter<any>();
   @Output() action = new EventEmitter<any>();
+
+
+  dividerState = {
+    left: 0,
+    leftOffset : 3.5
+  };
 
   mouseState = {
     down: false,
@@ -49,7 +56,8 @@ export class HeaderCellComponent implements OnInit {
 
     });
 
-    this.column.dividerState.left = this.column.width - this.column.dividerState.leftOffset;
+    this.dividerState.leftOffset = (this.dividerConfig.width / 2) + 1;
+    this.dividerState.left = this.column.width - this.dividerState.leftOffset;
 
   }
 
@@ -60,11 +68,11 @@ export class HeaderCellComponent implements OnInit {
   mouseMove (event) {
     const parentRect = this.vDivider.nativeElement.parentElement.getBoundingClientRect();
 
-    const x = event.clientX - parentRect.left - this.column.dividerState.leftOffset;
+    const x = event.clientX - parentRect.left - this.dividerState.leftOffset;
 
     if (this.mouseState.down) {
 
-      this.column.dividerState.left = x;
+      this.dividerState.left = x;
 
       this.cd.detectChanges();
 
@@ -76,7 +84,10 @@ export class HeaderCellComponent implements OnInit {
 
   mouseUp(event) {
     this.mouseState.down = false;
-    this.columnChanged.emit(this.column);
+    this.action.emit(new ResizeColumn({
+      column: this.column,
+      dividerState: this.dividerState
+    }));
   }
 
   mouseeventHander(event) {

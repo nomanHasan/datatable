@@ -12,5 +12,4 @@ export interface Column {
     searcher?: any;
     format?: any;
     dynamic?: any;
-    dividerState?: DividerState;
 }

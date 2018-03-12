@@ -8,6 +8,7 @@ export function rowsReducer(
 ): RowState[] {
     switch (action.type) {
         case ColumnActions.COLUMN_SORT: {
+            console.log(action);
             return state.slice(0, 10);
         }
     }

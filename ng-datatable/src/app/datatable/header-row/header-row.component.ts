@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy, HostListener, EventEmitter, Output } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { DividerConfig } from '../models/columns/divider-config.model';
 
 @Component({
   selector: 'no-header-row',
@@ -12,9 +13,8 @@ export class HeaderRowComponent implements OnInit {
 
 
   @Input() columns;
+  @Input() dividerConfig: DividerConfig;
 
-
-  @Output() columnChanged = new EventEmitter<any>();
   @Output() action = new EventEmitter<any>();
 
 
@@ -36,10 +36,6 @@ export class HeaderRowComponent implements OnInit {
 
     this.mouseEvent.next(event);
 
-  }
-
-  onColumnChanged(event) {
-    this.columnChanged.emit(event);
   }
 
   onAction(event) {

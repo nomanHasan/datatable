@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy, ElementRef, EventEmitter, Output } from '@angular/core';
+import { DividerConfig } from '../models/columns/divider-config.model';
+import { Column } from '../models/columns/column.model';
 
 
 @Component({
@@ -10,8 +12,8 @@ import { Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy, E
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() columns;
-  @Output() columnChanged = new EventEmitter<any>();
+  @Input() columns: Column;
+  @Input() dividerConfig: DividerConfig;
   @Output() action = new EventEmitter<any>();
 
   constructor(
@@ -19,10 +21,6 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-  }
-
-  onColumnChanged(event) {
-    this.columnChanged.emit(event);
   }
 
   onAction(event) {

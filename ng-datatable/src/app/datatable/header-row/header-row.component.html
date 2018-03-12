@@ -2,10 +2,9 @@
 class="table-header__cell cell" 
 *ngFor="let column of columns" 
 [column]="column"
+[dividerConfig]="dividerConfig"
 [mouseEvent]="mouseEvent"
 [style.width.px]="column.width"
-
-(columnChanged)="onColumnChanged($event)"
 (action)="onAction($event)"
 
 ></no-header-cell>

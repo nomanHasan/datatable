@@ -4,10 +4,10 @@ import * as ColumnActions from '../actions/column.action';
 import { columnsReducer } from './column/columns.reducer';
 import { rowsReducer } from './rows/rows.reducer';
 
-export const tableReducer = (
+export function tableReducer (
     state = initializeTableState(),
     action: Action
-): TableState => {
+): TableState {
 
     switch (action.type) {
         case ColumnActions.COLUMN_RESIZE: {
@@ -25,5 +25,5 @@ export const tableReducer = (
     }
 
     return state;
-};
+}
 
