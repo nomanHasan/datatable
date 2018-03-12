@@ -1,12 +1,12 @@
 <no-header-cell 
 class="table-header__cell cell" 
 *ngFor="let column of columns" 
-
 [column]="column"
 [mouseEvent]="mouseEvent"
 [style.width.px]="column.width"
 
 (columnChanged)="onColumnChanged($event)"
+(action)="onAction($event)"
 
 ></no-header-cell>
 

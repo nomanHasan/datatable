@@ -15,6 +15,8 @@ export class HeaderRowComponent implements OnInit {
 
 
   @Output() columnChanged = new EventEmitter<any>();
+  @Output() action = new EventEmitter<any>();
+
 
   mouseEvent: Subject<any> = new Subject<any>();
 
@@ -38,6 +40,10 @@ export class HeaderRowComponent implements OnInit {
 
   onColumnChanged(event) {
     this.columnChanged.emit(event);
+  }
+
+  onAction(event) {
+    this.action.emit(event);
   }
 
 }

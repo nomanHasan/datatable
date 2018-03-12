@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() columns;
   @Output() columnChanged = new EventEmitter<any>();
+  @Output() action = new EventEmitter<any>();
 
   constructor(
     public el: ElementRef
@@ -22,6 +23,10 @@ export class HeaderComponent implements OnInit {
 
   onColumnChanged(event) {
     this.columnChanged.emit(event);
+  }
+
+  onAction(event) {
+    this.action.emit(event);
   }
 
 }

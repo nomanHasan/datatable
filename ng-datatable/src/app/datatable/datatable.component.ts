@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation, ViewChild, ElementRef, ComponentRef, ChangeDetectionStrategy } from '@angular/core';
 import { TableStore } from './store/table.store';
-import { COLUMN_RESIZE } from './store/actions/column.action';
+import { COLUMN_RESIZE, SortColumn } from './store/actions/column.action';
 
 @Component({
   selector: 'no-datatable',
@@ -84,6 +84,10 @@ export class DatatableComponent implements OnInit {
       }
     });
     // this.store.updateColumn(event);
+  }
+
+  onAction(event) {
+    this.store.dispatch(event);
   }
 
 }
