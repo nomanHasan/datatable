@@ -112,8 +112,9 @@ export class HeaderCellComponent implements OnInit {
   }
 
   cellClicked(event) {
-    const sort = toggleSortDirection(this.column.sort);
-    this.action.emit(new SortColumn({column: this.column, sort}));
+    const direction = toggleSortDirection(this.column.sort);
+    console.log(direction);
+    this.action.emit(new SortColumn({column: this.column, direction: direction}));
   }
 
 }

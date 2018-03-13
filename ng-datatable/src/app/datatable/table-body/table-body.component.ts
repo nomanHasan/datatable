@@ -18,7 +18,11 @@ export class TableBodyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
+
+  }
+
+  rowTrackerFn(index, row) {
+    return row ? row.key : undefined;
   }
 
 }

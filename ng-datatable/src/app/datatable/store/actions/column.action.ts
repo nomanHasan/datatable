@@ -13,7 +13,7 @@ export class SortColumn implements Action {
 
     constructor(public payload: {
         column: Column,
-        sort: SortDirections
+        direction: SortDirections
     }) {
 
     }

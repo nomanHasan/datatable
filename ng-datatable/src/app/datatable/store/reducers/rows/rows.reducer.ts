@@ -1,6 +1,7 @@
 import { RowState } from '../../../models/row/row-state.model';
 import { Action } from '../../actions/action.model';
 import * as ColumnActions from '../../actions/column.action';
+import { sorterFn } from '../../analyzers/sorter'; 
 
 export function rowsReducer(
     state: RowState[],
@@ -8,8 +9,9 @@ export function rowsReducer(
 ): RowState[] {
     switch (action.type) {
         case ColumnActions.COLUMN_SORT: {
-            console.log(action);
-            return state.slice(0, 10);
+            return [
+                ...state.sort(sorterFn(action.payload.column, action.payload.direction))
+            ];
         }
     }
     return state;

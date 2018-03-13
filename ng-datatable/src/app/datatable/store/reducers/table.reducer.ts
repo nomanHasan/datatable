@@ -4,26 +4,14 @@ import * as ColumnActions from '../actions/column.action';
 import { columnsReducer } from './column/columns.reducer';
 import { rowsReducer } from './rows/rows.reducer';
 
-export function tableReducer (
+export function tableReducer(
     state = initializeTableState(),
     action: Action
 ): TableState {
-
-    switch (action.type) {
-        case ColumnActions.COLUMN_RESIZE: {
-            return {
-                ...state,
-                columns: columnsReducer(state.columns, action)
-            };
-        }
-        case ColumnActions.COLUMN_SORT: {
-            return {
-                ...state,
-                rows: rowsReducer(state.rows, action)
-            };
-        }
-    }
-
-    return state;
+    return {
+        ...state,
+        columns: columnsReducer(state.columns, action),
+        rows: rowsReducer(state.rows, action),
+    };
 }
 

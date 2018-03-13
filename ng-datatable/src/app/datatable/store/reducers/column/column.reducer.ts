@@ -14,5 +14,11 @@ export const columnReducer = (state: Column, action: Action): Column => {
                 width: payload.dividerState.left + payload.dividerState.leftOffset
             };
         }
+        case ColumnActions.COLUMN_SORT: {
+            return {
+                ...state,
+                sort: payload.direction
+            };
+        }
     }
 };

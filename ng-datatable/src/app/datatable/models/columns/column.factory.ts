@@ -22,7 +22,6 @@ export function createColumn(
     format = {
         value: 'plain'
     },
-    dividerState = defaultDividerState(),
     sort: SortDirections = SortDirections.NONE
 ): Column {
     if (displayValue.length === 0) {
@@ -36,7 +35,6 @@ export function createColumn(
         displayValue,
         editable,
         alignment,
-        dividerState,
         sort
     };
 }
@@ -51,7 +49,6 @@ export function createColumnWithConfig({
     format = {
         value: 'plain'
     },
-    dividerState = defaultDividerState(),
     sort = SortDirections.NONE
 }): Column {
     return {
@@ -62,7 +59,6 @@ export function createColumnWithConfig({
         editable,
         alignment,
         format,
-        dividerState,
         sort
     };
 }

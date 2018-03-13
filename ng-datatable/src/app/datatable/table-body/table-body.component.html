@@ -1,6 +1,6 @@
 <no-table-body-row
 class="table-body__row"
-*ngFor="let row of rows"
+*ngFor="let row of rows; trackBy:rowTrackerFn"
 [row]="row"
 [columns]="columns"
 >
