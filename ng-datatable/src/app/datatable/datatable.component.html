@@ -4,12 +4,18 @@
   class="table-header" 
   [columns]="tableState.columns"
   [dividerConfig]="tableState.dividerConfig"
+  [visibleColumns]="tableState.visibleColumns"
+  [viewportColumns]="tableState.viewportColumns"
   (action)="onAction($event)"
   >
 
   </no-header>
 
-  <no-search #search class="table-search" [columns]="tableState.columns">
+  <no-search #search class="table-search" 
+  [columns]="tableState.columns"
+  [visibleColumns]="tableState.visibleColumns"
+  [viewportColumns]="tableState.viewportColumns"
+  >
   </no-search>
 
   <no-table-body #body class="table-body"
@@ -21,7 +27,11 @@
 
   </no-table-body>
 
-  <no-footer #footer class="table-footer" [columns]="tableState.columns">
+  <no-footer #footer class="table-footer" 
+  [columns]="tableState.columns"
+  [visibleColumns]="tableState.visibleColumns"
+  [viewportColumns]="tableState.viewportColumns"
+  >
 
   </no-footer>
   <div #bottomBorder (scroll)="onBottomScroll($event)" class="bottom-border">

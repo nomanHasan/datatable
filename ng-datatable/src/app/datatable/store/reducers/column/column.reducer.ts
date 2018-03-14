@@ -1,4 +1,4 @@
-import { Column } from '../../../models/columns/column.model';
+import { Column, ColumnCollectionMap } from '../../../models/columns/column.model';
 import { Action } from '../../actions/action.model';
 import * as ColumnActions from '../../actions/column.action';
 

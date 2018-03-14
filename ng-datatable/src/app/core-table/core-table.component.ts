@@ -10,8 +10,8 @@ import { createColumnWithConfig } from '../datatable/models/columns/column.facto
 export class CoreTableComponent implements OnInit {
 
 
-  rowNumber = 200;
-  columnNumber = 10;
+  rowNumber = 2000;
+  columnNumber = 100;
 
   combinedData = TableData.getTableData(this.rowNumber, this.columnNumber);
 

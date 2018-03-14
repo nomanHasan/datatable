@@ -1,9 +1,9 @@
 <no-footer-cell 
 class="table-footer__cell cell"
-*ngFor="let column of columns"
-[column] = "column"
+*ngFor="let key of viewportColumns"
+[column] = "columns[key]"
 
-[style.width.px]="column.width"
+[style.width.px]="columns[key].width"
 >
 
 </no-footer-cell>

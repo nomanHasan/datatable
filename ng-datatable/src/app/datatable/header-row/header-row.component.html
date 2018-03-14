@@ -2,11 +2,11 @@
 class="table-header__cell cell" 
 draggable="true"
 
-*ngFor="let column of columns" 
-[column]="column"
+*ngFor="let key of viewportColumns" 
+[column]="columns[key]"
 [dividerConfig]="dividerConfig"
 [mouseEvent]="mouseEvent"
-[style.width.px]="column.width"
+[style.width.px]="columns[key].width"
 (action)="onAction($event)"
 
 ></no-header-cell>

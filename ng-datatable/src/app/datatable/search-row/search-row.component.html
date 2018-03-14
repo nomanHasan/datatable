@@ -1,8 +1,8 @@
 <no-search-cell 
 class="table-search__cell cell"
-*ngFor="let column of columns"
-[column] = "column"
-[style.width.px]="column.width"
+*ngFor="let key of viewportColumns"
+[column] = "columns[key]"
+[style.width.px]="columns[key].width"
 ></no-search-cell>
 
 

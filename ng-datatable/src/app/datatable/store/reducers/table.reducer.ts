@@ -8,14 +8,30 @@ export function tableReducer(
     state = initializeTableState(),
     action: Action
 ): TableState {
-    let newState = state;
+    const payload = action.payload;
+    const newState = state;
 
     switch (action.type) {
         case ColumnActions.MOVE_COLUMN: {
 
             console.log(action.payload);
-            console.log(state);
-            break;
+
+            const visibleColumns = state.visibleColumns.slice();
+
+            const target = visibleColumns.findIndex(c => c === payload.target.name);
+            const source = visibleColumns.findIndex(c => c === payload.source.name);
+
+            const temp = visibleColumns[target];
+            visibleColumns[target] = visibleColumns[source];
+            visibleColumns[source] = temp;
+
+            console.log(target, source, visibleColumns);
+
+            return {
+                ...state,
+                visibleColumns: visibleColumns,
+                viewportColumns: visibleColumns,
+            };
         }
     }
 

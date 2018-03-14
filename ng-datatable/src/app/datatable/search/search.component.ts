@@ -10,6 +10,8 @@ export class SearchComponent implements OnInit {
 
 
   @Input() columns;
+  @Input() visibleColumns;
+  @Input() viewportColumns;
 
   constructor(
     public el: ElementRef

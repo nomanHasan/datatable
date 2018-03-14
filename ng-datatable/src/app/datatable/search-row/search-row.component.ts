@@ -10,6 +10,8 @@ export class SearchRowComponent implements OnInit {
 
 
   @Input() columns;
+  @Input() visibleColumns;
+  @Input() viewportColumns;
 
   constructor() { }
 

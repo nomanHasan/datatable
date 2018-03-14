@@ -14,6 +14,8 @@ export class HeaderRowComponent implements OnInit {
 
   @Input() columns;
   @Input() dividerConfig: DividerConfig;
+  @Input() visibleColumns;
+  @Input() viewportColumns;
 
   @Output() action = new EventEmitter<any>();
 
