@@ -1,10 +1,12 @@
-import { Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy,
-   ElementRef, ViewChild, ChangeDetectorRef, EventEmitter, Output } from '@angular/core';
+import {
+  Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy,
+  ElementRef, ViewChild, ChangeDetectorRef, EventEmitter, Output, HostListener
+} from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Column } from '../models/columns/column.model';
 import { SortDirections, toggleSortDirection } from '../models/sort/sort-direction.model';
 import { TableStore } from '../store/table.store';
-import { SortColumn, ResizeColumn } from '../store/actions/column.action';
+import { SortColumn, ResizeColumn, MoveColumn } from '../store/actions/column.action';
 import { DividerConfig } from '../models/columns/divider-config.model';
 
 @Component({
@@ -26,7 +28,7 @@ export class HeaderCellComponent implements OnInit {
 
   dividerState = {
     left: 0,
-    leftOffset : 3.5
+    leftOffset: 3.5
   };
 
   mouseState = {
@@ -65,7 +67,7 @@ export class HeaderCellComponent implements OnInit {
     this.mouseState.down = true;
   }
 
-  mouseMove (event) {
+  mouseMove(event) {
     const parentRect = this.vDivider.nativeElement.parentElement.getBoundingClientRect();
 
     const x = event.clientX - parentRect.left - this.dividerState.leftOffset;
@@ -114,7 +116,50 @@ export class HeaderCellComponent implements OnInit {
   cellClicked(event) {
     const direction = toggleSortDirection(this.column.sort);
     console.log(direction);
-    this.action.emit(new SortColumn({column: this.column, direction: direction}));
+    this.action.emit(new SortColumn({ column: this.column, direction: direction }));
+  }
+
+
+
+  @HostListener('dragstart', ['$event']) ondragstart(event) {
+    console.log(event);
+    event.dataTransfer.dropEffect = 'move';
+    event.dataTransfer.setData('column', JSON.stringify(this.column));
+  }
+
+
+  @HostListener('dragenter', ['$event']) dragenter(event) {
+    event.preventDefault();
+  }
+
+
+  @HostListener('dragover', ['$event']) dragover(event) {
+    event.preventDefault();
+  }
+
+  @HostListener('dragleave', ['$event']) dragleave(event) {
+    console.log(event);
+  }
+
+  @HostListener('drop', ['$event']) ondrop(event) {
+    console.log(event);
+    console.log(event.dataTransfer.getData('column'));
+    let source: Column;
+
+    try {
+
+      source = JSON.parse(event.dataTransfer.getData('column'));
+
+    } catch (e) {
+
+      return;
+
+    }
+
+    this.action.emit(new MoveColumn({
+      target: this.column,
+      source: source
+    }));
   }
 
 }

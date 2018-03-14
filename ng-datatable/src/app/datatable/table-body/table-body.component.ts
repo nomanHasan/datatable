@@ -9,9 +9,10 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, ElementRef } from '@
 export class TableBodyComponent implements OnInit {
 
 
-  @Input() tableData;
   @Input() rows;
   @Input() columns;
+  @Input() visibleColumns;
+  @Input() viewportColumns;
 
   constructor(
     public el: ElementRef

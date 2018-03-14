@@ -23,4 +23,5 @@ export const columnsReducer = (
             });
         }
     }
+    return state;
 };

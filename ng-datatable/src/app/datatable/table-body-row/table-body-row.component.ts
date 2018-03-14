@@ -13,6 +13,8 @@ export class RowComponent implements OnInit {
 
   @Input() row: RowState;
   @Input() columns: Column[];
+  @Input() visibleColumns;
+  @Input() viewportColumns;
 
   constructor() { }
 

@@ -13,3 +13,7 @@ export interface Column {
     format?: any;
     dynamic?: any;
 }
+
+export type ColumnCollectionMap = {
+    [key: string]: Column;
+}[];

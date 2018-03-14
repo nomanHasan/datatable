@@ -5,6 +5,7 @@ import { Action } from './action.model';
 
 export const COLUMN_RESIZE = 'COLUMN_RESIZE';
 export const COLUMN_SORT = 'COLUMN_SORT';
+export const MOVE_COLUMN = 'MOVE_COLUMN';
 
 
 
@@ -33,5 +34,16 @@ export class ResizeColumn implements Action {
 
 }
 
+export class MoveColumn implements Action {
+    readonly type = MOVE_COLUMN;
 
-export type All = SortColumn | ResizeColumn;
+    constructor(public payload: {
+        target?: Column,
+        source: Column
+    }) {
+
+    }
+}
+
+
+export type All = SortColumn | ResizeColumn | MoveColumn;

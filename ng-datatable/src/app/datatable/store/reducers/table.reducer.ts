@@ -8,6 +8,18 @@ export function tableReducer(
     state = initializeTableState(),
     action: Action
 ): TableState {
+    let newState = state;
+
+    switch (action.type) {
+        case ColumnActions.MOVE_COLUMN: {
+
+            console.log(action.payload);
+            console.log(state);
+            break;
+        }
+    }
+
+
     return {
         ...state,
         columns: columnsReducer(state.columns, action),

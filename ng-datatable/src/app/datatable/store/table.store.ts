@@ -57,22 +57,26 @@ export class TableStore {
 
   }
 
-  setColumns(columns) {
+  setColumns(cols) {
     // this.columnSubject.next(columns);
 
+    const { columns, visibleColumns, viewportColumns } = this.schemaMapper.flattenColumns(cols);
 
     const scroll = {
-      width: columns.reduce((sum, c) => {
+      width: cols.reduce((sum, c) => {
         sum += c.width;
         return sum;
       }, 0) + 50
     };
-    // this.scrollSubject.next(scroll);
+
+    console.log(columns, visibleColumns, viewportColumns);
 
     this.tableState = {
       ...this.tableState,
-      columns: columns,
-      scroll: scroll
+      columns,
+      visibleColumns,
+      viewportColumns,
+      scroll
     };
 
     if (this.tableState.rows && this.tableState.rows.length > 0) {

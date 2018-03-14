@@ -4,7 +4,7 @@ import {CellState} from '../cell/cell-state.model';
 export class RowState {
 
     selected?: boolean;
-
+    key?: string;
     constructor(public cells?: CellCollectionMap
     ) {}
 
