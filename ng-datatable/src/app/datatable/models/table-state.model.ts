@@ -1,13 +1,17 @@
-import { RowState } from './row/row-state.model';
+import { RowState, RowCollectionMap } from './row/row-state.model';
 import { Column, ColumnCollectionMap } from './columns/column.model';
 import { DividerConfig, defaultDividerConfig } from './columns/divider-config.model';
 
 export class TableState {
     tableName?: string;
+
+    /**
+     * Primary Key of the Table
+     */
     keyProperty?: string;
 
 
-    rows?: RowState[];
+    rows?: RowCollectionMap;
     columns?: ColumnCollectionMap;
 
     visibleRows?: string[];
@@ -15,6 +19,12 @@ export class TableState {
 
     viewportRows?: string[];
     viewportColumns?: string[];
+
+    viewportHeight?: number;
+    viewportWidth?: number;
+
+    visibleHeight?: number;
+    visibleWidth?: number;
 
     scroll?: any;
 

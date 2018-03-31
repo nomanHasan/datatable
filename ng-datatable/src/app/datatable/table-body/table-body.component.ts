@@ -10,6 +10,13 @@ export class TableBodyComponent implements OnInit {
 
 
   @Input() rows;
+  @Input() visibleRows;
+  @Input() viewportRows;
+
+  @Input() visibleHeight;
+
+
+
   @Input() columns;
   @Input() visibleColumns;
   @Input() viewportColumns;
@@ -19,7 +26,7 @@ export class TableBodyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    console.log(this.rows, this.visibleRows, this.visibleRows);
   }
 
   rowTrackerFn(index, row) {

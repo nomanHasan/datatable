@@ -20,7 +20,7 @@ export class RowComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log('Row Init');
+    console.log('Row Init', this.row);
 
   }
 

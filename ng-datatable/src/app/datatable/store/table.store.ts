@@ -43,15 +43,19 @@ export class TableStore {
 
     this.tableState = this.tableStateSubject.getValue();
 
+    const {rowCollectionMap, visibleRows, viewportRows } = this.schemaMapper.flatMapRows(rows, 'index');
+
     this.tableState = {
       ...this.tableState,
-      rows: rows
+      rows: rowCollectionMap,
+      visibleRows, viewportRows,
+      visibleHeight: visibleRows.reduce((accm, obj) => accm + 40, 0)
     };
 
 
     console.log(this.tableState);
 
-    if (this.tableState.columns && this.tableState.columns.length > 0) {
+    if (this.tableState.columns) {
       this.tableStateSubject.next(this.tableState);
     }
 
@@ -69,37 +73,41 @@ export class TableStore {
       }, 0) + 50
     };
 
-    console.log(columns, visibleColumns, viewportColumns);
+    console.log(columns, visibleColumns, viewportColumns, scroll);
 
     this.tableState = {
       ...this.tableState,
       columns,
-      visibleColumns,
       viewportColumns,
+      visibleColumns,
+      visibleWidth: visibleColumns.reduce((accm, obj) => {
+        accm += columns[obj].width;
+        return accm;
+      }, 0) + 50,
       scroll
     };
 
-    if (this.tableState.rows && this.tableState.rows.length > 0) {
+    if (this.tableState.rows ) {
       this.tableStateSubject.next(this.tableState);
     }
 
   }
 
-  updateColumn(column: Column) {
-    let col = this.tableState.columns.find(c => c.name === column.name);
-    // column.width = column.dividerState.left + column.dividerState.leftOffset;
-    col = {
-      ...col,
-      ...column
-    };
-    this.tableState = {
-      ...this.tableState,
-      columns: [
-        ...this.tableState.columns
-      ]
-    };
-    this.tableStateSubject.next(this.tableState);
-  }
+  // updateColumn(column: Column) {
+  //   let col = this.tableState.columns.find(c => c.name === column.name);
+  //   // column.width = column.dividerState.left + column.dividerState.leftOffset;
+  //   col = {
+  //     ...col,
+  //     ...column
+  //   };
+  //   this.tableState = {
+  //     ...this.tableState,
+  //     columns: [
+  //       ...this.tableState.columns
+  //     ]
+  //   };
+  //   this.tableStateSubject.next(this.tableState);
+  // }
 
   dispatch(action: Action) {
     this.tableState = tableReducer(this.tableState, action);

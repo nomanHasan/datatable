@@ -21,15 +21,20 @@ const getPlainArray = (row, col) => {
 const getTableData = (row, col) => {
     const tableData = [];
 
-    const cols = [];
+    const cols = ['index'];
     range(col).forEach(c => {
         cols.push(randomWords());
     });
 
     range(row).forEach((r, i) => {
         let rowData = {};
-        rowData = { };
-        cols.forEach(c => {
+        rowData = {
+            'index': i
+        };
+        cols.forEach((c, index) => {
+            if (c === 'index') {
+                return;
+            }
             rowData = {
                 ...rowData,
                 [c]: randomWords()

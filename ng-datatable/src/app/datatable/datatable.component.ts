@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, ViewEncapsulation, ViewChild, ElementRef, ComponentRef, ChangeDetectionStrategy } from '@angular/core';
 import { TableStore } from './store/table.store';
 import { COLUMN_RESIZE, SortColumn } from './store/actions/column.action';
+import * as ScrollActions from './store/actions/body/scroll.action';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'no-datatable',
@@ -88,6 +91,27 @@ export class DatatableComponent implements OnInit {
 
   onAction(event) {
     this.store.dispatch(event);
+  }
+
+  // tslint:disable-next-line:member-ordering
+  scrollSubject = new Subject<any>();
+  // tslint:disable-next-line:member-ordering
+  scrollObj = this.scrollSubject.asObservable();
+
+
+  onTableBodyScroll(event) {
+    const tbody = this.body.el.nativeElement;
+
+    this.scrollSubject.next(new ScrollActions.VerticalScroll({
+      scrollTop: tbody.scrollTop, height: tbody.getBoundingClientRect().height
+    }));
+
+    this.scrollObj.debounceTime(100).distinctUntilChanged().subscribe(res => {
+
+      this.store.dispatch(res);
+
+    });
+
   }
 
 }

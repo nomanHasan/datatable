@@ -1,18 +1,18 @@
-import { RowState, CellCollectionMap } from '../models/row/row-state.model';
+import { RowState, RowCollectionMap } from '../models/row/row-state.model';
 import { CellState } from '../models/cell/cell-state.model';
 import { Cell } from '../models/cell/cell.model';
 import { Column, ColumnCollectionMap } from '../models/columns/column.model';
 
 export class SchemaMapper {
     fromTabledata(data): RowState[] {
-        return data.map(d => {
+        return data.map((d, i) => {
 
             const map: any = {};
             Object.keys(d).map(k => {
                 map[k] = new CellState(k, d[k]);
             });
 
-            return new RowState(map);
+            return {...new RowState(map), positionY: i * 40};
         });
     }
 
@@ -21,23 +21,29 @@ export class SchemaMapper {
         viewportColumns: string[],
         visibleColumns: string[]
     } {
-
-        const columns: any = cols.reduce((accm, obj) => {
-            accm[obj.name] = obj;
-            return accm;
-        }, {});
-
-        const viewportColumns = cols.map(c => c.name);
-        const visibleColumns = cols.map(c => c.name);
-
-
-
         return {
-            columns,
-            viewportColumns,
-            visibleColumns
+            columns: cols.reduce((accm, obj) => {
+                accm[obj.name] = obj;
+                return accm;
+            }, {}) as ColumnCollectionMap,
+            viewportColumns: cols.slice(0, 20).map(c => c.name),
+            visibleColumns: cols.map(c => c.name)
         };
+    }
 
+    flatMapRows(ros: RowState[], rowKey: string): {
+        rowCollectionMap: RowCollectionMap,
+        visibleRows: string[],
+        viewportRows: string[],
+    } {
+        return {
+            rowCollectionMap: ros.reduce((accm, obj) => {
+                accm[obj['cells'][rowKey]['data']] = obj;
+                return accm;
+            }, {}) as RowCollectionMap,
+            visibleRows: ros.map(r => r['cells'][rowKey]['data']),
+            viewportRows: ros.slice(0, 20).map(r => r['cells'][rowKey]['data']),
+        };
     }
 
 }

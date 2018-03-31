@@ -1,5 +1,6 @@
 import {Row} from './row.model';
 import {CellState} from '../cell/cell-state.model';
+import { CellCollectionMap } from '../cell/cell.model';
 
 export class RowState {
 
@@ -7,6 +8,7 @@ export class RowState {
     key?: string;
     constructor(public cells?: CellCollectionMap
     ) {}
+    positionY?: number;
 
     getRow(): Row {
         return {
@@ -18,6 +20,6 @@ export class RowState {
 
 }
 
-export type CellCollectionMap = {
-    [key: string]: CellState
+export type RowCollectionMap = {
+    [key: string]: RowState;
 }[];

@@ -11,7 +11,7 @@ export class CoreTableComponent implements OnInit {
 
 
   rowNumber = 2000;
-  columnNumber = 100;
+  columnNumber = 200;
 
   combinedData = TableData.getTableData(this.rowNumber, this.columnNumber);
 

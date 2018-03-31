@@ -14,10 +14,12 @@ import { SearchComponent } from './search/search.component';
 import { SearchRowComponent } from './search-row/search-row.component';
 import { SearchCellComponent } from './search-cell/search-cell.component';
 import { TableStore } from './store/table.store';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   declarations: [
     DatatableComponent,

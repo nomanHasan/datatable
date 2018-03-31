@@ -20,11 +20,20 @@
 
   <no-table-body #body class="table-body"
   [rows]="tableState.rows"
+  [visibleRows]="tableState.visibleRows"
+  [viewportRows]="tableState.viewportRows"
+
+
+  [visibleHeight]="tableState.visibleHeight"
+
   [columns]="tableState.columns"
   [visibleColumns]="tableState.visibleColumns"
   [viewportColumns]="tableState.viewportColumns"
-  >
 
+
+  (scroll)="onTableBodyScroll($event)"
+
+  >
   </no-table-body>
 
   <no-footer #footer class="table-footer" 
@@ -35,7 +44,11 @@
 
   </no-footer>
   <div #bottomBorder (scroll)="onBottomScroll($event)" class="bottom-border">
-    <div  [style.width.px]="tableState.scroll.width"  class="bottom-border__body"></div>
+    <div class="bottom-border__body" 
+    [ngStyle]="{
+      'width': tableState.visibleWidth + 'px'
+    }"
+    ></div>
   </div>
 
 </div>

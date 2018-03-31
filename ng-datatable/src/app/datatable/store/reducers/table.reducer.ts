@@ -3,34 +3,48 @@ import { Action } from '../actions/action.model';
 import * as ColumnActions from '../actions/column.action';
 import { columnsReducer } from './column/columns.reducer';
 import { rowsReducer } from './rows/rows.reducer';
+import { reorderArray } from '../analyzers/reorder';
+import * as ScrollActions from '../actions/body/scroll.action';
 
 export function tableReducer(
     state = initializeTableState(),
     action: Action
 ): TableState {
-    const payload = action.payload;
     const newState = state;
 
     switch (action.type) {
         case ColumnActions.MOVE_COLUMN: {
+            const payload = action.payload;
 
-            console.log(action.payload);
+            const target = state.visibleColumns.findIndex(c => c === payload.target.name);
+            const source = state.visibleColumns.findIndex(c => c === payload.source.name);
 
-            const visibleColumns = state.visibleColumns.slice();
-
-            const target = visibleColumns.findIndex(c => c === payload.target.name);
-            const source = visibleColumns.findIndex(c => c === payload.source.name);
-
-            const temp = visibleColumns[target];
-            visibleColumns[target] = visibleColumns[source];
-            visibleColumns[source] = temp;
-
-            console.log(target, source, visibleColumns);
+            const visibleColumns = reorderArray(state.visibleColumns, source, target);
 
             return {
                 ...state,
                 visibleColumns: visibleColumns,
                 viewportColumns: visibleColumns,
+            };
+        }
+
+        case ScrollActions.VERTICAL_SCROLL: {
+            const payload = (action as ScrollActions.VerticalScroll).payload;
+            console.log('VER SCR');
+            console.log(payload);
+            const top = payload.scrollTop;
+            const bottom = payload.scrollTop + payload.height;
+
+            const viewportRows = [];
+            Object.keys(state.rows).forEach(key => {
+                if (state.rows[key].positionY > top - 500 && state.rows[key].positionY + 40 < bottom + 500) {
+                    viewportRows.push(key);
+                }
+            });
+
+            return {
+                ...state,
+                viewportRows
             };
         }
     }

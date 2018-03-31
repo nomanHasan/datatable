@@ -1,17 +1,18 @@
-import { RowState } from '../../../models/row/row-state.model';
+import { RowState, RowCollectionMap } from '../../../models/row/row-state.model';
 import { Action } from '../../actions/action.model';
 import * as ColumnActions from '../../actions/column.action';
-import { sorterFn } from '../../analyzers/sorter'; 
+import { sorterFn } from '../../analyzers/sorter';
 
 export function rowsReducer(
-    state: RowState[],
+    state: RowCollectionMap,
     action: Action
-): RowState[] {
+): RowCollectionMap {
     switch (action.type) {
         case ColumnActions.COLUMN_SORT: {
-            return [
-                ...state.sort(sorterFn(action.payload.column, action.payload.direction))
-            ];
+            return state;
+            // [
+            //     ...state.sort(sorterFn(action.payload.column, action.payload.direction))
+            // ];
         }
     }
     return state;

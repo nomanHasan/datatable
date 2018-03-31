@@ -37,11 +37,15 @@
   height: 500px;
   overflow-x: hidden;
 
+  position: relative;
+
   .table-body__row {
 
     display: flex;
     width: fit-content;
     white-space: nowrap;
+
+    position: absolute;
 
     .table-body__cell {
 
@@ -106,7 +110,6 @@
     overflow: auto;
 
     .bottom-border__body {
-        width: 10000px;
         height: 5px;
     }
 }

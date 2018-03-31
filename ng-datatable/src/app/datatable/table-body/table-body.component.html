@@ -1,10 +1,17 @@
-<no-table-body-row
-class="table-body__row"
-*ngFor="let row of rows; trackBy:rowTrackerFn"
-[row]="row"
-[columns]="columns"
-[visibleColumns]="visibleColumns"
-[viewportColumns]="viewportColumns"
+<div class="viewport"
+[ngStyle]="{
+    'height': visibleHeight + 'px'
+}"
 >
+    <no-table-body-row 
+    class="table-body__row" 
+    *ngFor="let rowKey of viewportRows; trackBy:rowTrackerFn;" 
 
-</no-table-body-row>
+    [row]="rows[rowKey]" 
+    [columns]="columns"
+    [visibleColumns]="visibleColumns" 
+    [viewportColumns]="viewportColumns" 
+    [style.top.px]="rows[rowKey].positionY">
+
+    </no-table-body-row>
+</div>

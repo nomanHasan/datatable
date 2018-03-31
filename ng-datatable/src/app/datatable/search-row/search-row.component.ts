@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'no-search-row',
@@ -13,10 +13,17 @@ export class SearchRowComponent implements OnInit {
   @Input() visibleColumns;
   @Input() viewportColumns;
 
+
+  @Output() action = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit() {
     console.log(this.columns);
+  }
+
+  onAction(event) {
+    this.action.emit(event);
   }
 
 }
