@@ -47,6 +47,27 @@ export function tableReducer(
                 viewportRows
             };
         }
+        case ScrollActions.HORIZONTAL_SCROLL: {
+            const payload = (action as ScrollActions.HorizontalScroll).payload;
+            // console.log('VER SCR');
+            // console.log(payload);
+            const left = payload.scrollLeft;
+            const right = payload.scrollLeft + payload.width;
+
+            const viewportColumns = [];
+            Object.keys(state.columns).forEach(key => {
+                if (state.columns[key].positionX > left - 500 && state.columns[key].positionX < right + 500) {
+                    viewportColumns.push(key);
+                }
+            });
+
+            // console.log(left, right, viewportColumns.map(x => state.columns[x].positionX));
+
+            return {
+                ...state,
+                viewportColumns
+            };
+        }
     }
 
 

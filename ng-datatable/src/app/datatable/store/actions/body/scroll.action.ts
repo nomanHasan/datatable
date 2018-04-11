@@ -12,5 +12,15 @@ export class VerticalScroll implements Action {
     }) {
 
     }
+}
 
+export class HorizontalScroll implements Action {
+    readonly type = HORIZONTAL_SCROLL;
+
+    constructor(public payload: {
+        scrollLeft: number,
+        width: number
+    }) {
+
+    }
 }

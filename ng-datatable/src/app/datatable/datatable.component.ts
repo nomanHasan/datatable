@@ -72,23 +72,45 @@ export class DatatableComponent implements OnInit {
     this.store.setRows(this.tableData);
     // this.store.setColumns(this.columns.slice(0, 10));
 
-
-
     this.scrollObj.debounceTime(50).distinctUntilChanged().subscribe(res => {
 
+    //   this.body.el.nativeElement.
+    // scrollLeft = res.scrollLeft;
+      // this.syncScrollLeft();
       this.store.dispatch(res);
 
     });
 
   }
 
+  syncScrollLeft(scrollLeft = this.bottomBorder.nativeElement.scrollLeft) {
+    console.log(this.bottomBorder.nativeElement);
+    this.header.el.nativeElement.scrollLeft = scrollLeft;
+    this.search.el.nativeElement.scrollLeft = scrollLeft;
+    this.body.el.nativeElement.scrollLeft = scrollLeft;
+    this.footer.el.nativeElement.scrollLeft = scrollLeft;
+  }
+
   onBottomScroll(event) {
-    this.header.el.nativeElement
-    .scrollLeft = this.search.el.nativeElement.
-    scrollLeft = this.body.el.nativeElement.
-    scrollLeft = this.footer.el.nativeElement.
-    scrollLeft = event.target.
-    scrollLeft;
+    const scrollLeft = event.target.scrollLeft;
+
+    // this.syncScrollLeft(scrollLeft);
+
+    const tbody = this.body.el.nativeElement;
+
+    this.scrollState = {
+      ...this.scrollState,
+      left: tbody.scrollLeft
+    };
+
+    // console.log({
+    //   scrollLeft: event.target.scrollLeft, width: tbody.getBoundingClientRect().width
+    // });
+
+    this.scrollSubject.next(new ScrollActions.HorizontalScroll({
+      scrollLeft: tbody.scrollLeft, width: tbody.getBoundingClientRect().width
+    }));
+
   }
 
   onRightScroll(event) {
@@ -118,6 +140,7 @@ export class DatatableComponent implements OnInit {
 
 
   onTableBodyScroll(event) {
+
     const tbody = this.body.el.nativeElement;
 
     const scrollType = this.scrollState.top !== tbody.scrollTop ? ScrollTypes.VERTICAL : (
@@ -133,6 +156,10 @@ export class DatatableComponent implements OnInit {
     if (scrollType === ScrollTypes.VERTICAL) {
       this.scrollSubject.next(new ScrollActions.VerticalScroll({
         scrollTop: tbody.scrollTop, height: tbody.getBoundingClientRect().height
+      }));
+    } else if (scrollType === ScrollTypes.HORIZONTAL) {
+      this.scrollSubject.next(new ScrollActions.HorizontalScroll({
+        scrollLeft: tbody.scrollLeft, width: tbody.getBoundingClientRect().width
       }));
     }
 

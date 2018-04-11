@@ -26,8 +26,8 @@ export class SchemaMapper {
                 accm[obj.name] = obj;
                 return accm;
             }, {}) as ColumnCollectionMap,
-            viewportColumns: cols.map(c => c.name),
-            visibleColumns: cols.map(c => c.name)
+            visibleColumns: cols.map(c => c.name),
+            viewportColumns: cols.slice(0, 20).map(c => c.name)
         };
     }
 
