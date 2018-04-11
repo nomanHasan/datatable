@@ -3,10 +3,14 @@ class="table-header__cell cell"
 draggable="true"
 
 *ngFor="let key of viewportColumns" 
+
 [column]="columns[key]"
 [dividerConfig]="dividerConfig"
 [mouseEvent]="mouseEvent"
+
 [style.width.px]="columns[key].width"
+[style.left.px]="columns[key].positionX"
+
 (action)="onAction($event)"
 
 ></no-header-cell>

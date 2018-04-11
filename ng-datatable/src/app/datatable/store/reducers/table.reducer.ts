@@ -30,8 +30,8 @@ export function tableReducer(
 
         case ScrollActions.VERTICAL_SCROLL: {
             const payload = (action as ScrollActions.VerticalScroll).payload;
-            console.log('VER SCR');
-            console.log(payload);
+            // console.log('VER SCR');
+            // console.log(payload);
             const top = payload.scrollTop;
             const bottom = payload.scrollTop + payload.height;
 

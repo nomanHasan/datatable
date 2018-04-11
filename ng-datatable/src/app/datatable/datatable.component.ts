@@ -15,6 +15,15 @@ import { Subject } from 'rxjs';
 })
 export class DatatableComponent implements OnInit {
 
+  _columns;
+  @Input() set columns(value) {
+    this._columns = value;
+    this.store.setColumns(this._columns);
+  }
+
+  get columns() {
+    return this._columns;
+  }
 
   _tableData;
   @Input() set tableData(value) {
@@ -24,17 +33,6 @@ export class DatatableComponent implements OnInit {
 
   get tableData() {
     return this._tableData;
-  }
-
-  _columns;
-  @Input() set columns(value) {
-    this._columns = value;
-    this.store.setColumns(this._columns);
-    console.log(value);
-  }
-
-  get columns() {
-    return this._columns;
   }
 
   _config;
@@ -102,11 +100,13 @@ export class DatatableComponent implements OnInit {
   onTableBodyScroll(event) {
     const tbody = this.body.el.nativeElement;
 
+    console.log(event);
+
     this.scrollSubject.next(new ScrollActions.VerticalScroll({
       scrollTop: tbody.scrollTop, height: tbody.getBoundingClientRect().height
     }));
 
-    this.scrollObj.debounceTime(100).distinctUntilChanged().subscribe(res => {
+    this.scrollObj.debounceTime(50).distinctUntilChanged().subscribe(res => {
 
       this.store.dispatch(res);
 

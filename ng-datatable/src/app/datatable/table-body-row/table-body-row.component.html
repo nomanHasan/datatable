@@ -1,10 +1,11 @@
 <no-cell 
 class="table-body__cell cell"
-*ngFor="let keys of viewportColumns"
+*ngFor="let key of viewportColumns"
 
-[data]="row.cells[keys]"
-[column]="columns[keys]"
-[style.width.px]="columns[keys].width"
+[data]="row.cells[key]"
+[column]="columns[key]"
+[style.width.px]="columns[key].width"
+[style.left.px]="columns[key].positionX"
 >
 
 </no-cell>

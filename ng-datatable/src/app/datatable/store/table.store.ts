@@ -34,14 +34,11 @@ export class TableStore {
 
   tableState$: Observable<any> = this.tableStateSubject.asObservable();
 
-  tableState: TableState;
+  tableState: TableState = initializeTableState();
 
   setRows(rowsData) {
 
     const rows: RowState[] = this.schemaMapper.fromTabledata(rowsData);
-    console.log(rowsData);
-
-    this.tableState = this.tableStateSubject.getValue();
 
     const {rowCollectionMap, visibleRows, viewportRows } = this.schemaMapper.flatMapRows(rows, 'index');
 
@@ -49,11 +46,14 @@ export class TableStore {
       ...this.tableState,
       rows: rowCollectionMap,
       visibleRows, viewportRows,
-      visibleHeight: visibleRows.reduce((accm, obj) => accm + 40, 0)
+      visibleHeight: visibleRows.reduce((accm, obj) => accm + 40, 0),
+      columns: {
+        ...this.tableState.columns,
+        ...this.schemaMapper.assignPositionX(this.tableState.visibleColumns, this.tableState.columns)
+      }
     };
 
-
-    console.log(this.tableState);
+    console.log(this.tableState.columns);
 
     if (this.tableState.columns) {
       this.tableStateSubject.next(this.tableState);
@@ -62,8 +62,7 @@ export class TableStore {
   }
 
   setColumns(cols) {
-    // this.columnSubject.next(columns);
-
+    console.log(cols);
     const { columns, visibleColumns, viewportColumns } = this.schemaMapper.flattenColumns(cols);
 
     const scroll = {
@@ -72,8 +71,6 @@ export class TableStore {
         return sum;
       }, 0) + 50
     };
-
-    console.log(columns, visibleColumns, viewportColumns, scroll);
 
     this.tableState = {
       ...this.tableState,
@@ -111,7 +108,7 @@ export class TableStore {
 
   dispatch(action: Action) {
     this.tableState = tableReducer(this.tableState, action);
-    console.log(this.tableState);
+    console.log(this.tableState, action);
     this.tableStateSubject.next(this.tableState);
   }
 

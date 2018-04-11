@@ -5,6 +5,7 @@ export interface Column {
     name: string;
     type: string;
     width: number;
+    positionX?: number;
     displayValue?: string;
     editable?: boolean;
     alignment?: string;

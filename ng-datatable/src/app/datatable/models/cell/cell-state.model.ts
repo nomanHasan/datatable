@@ -4,6 +4,8 @@ export class CellState {
 
     selected?: boolean;
 
+    positionX?: number;
+
     constructor(
         public key?: string,
         public data?: any,

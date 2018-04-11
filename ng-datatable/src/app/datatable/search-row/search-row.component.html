@@ -2,7 +2,9 @@
 class="table-search__cell cell"
 *ngFor="let key of viewportColumns"
 [column] = "columns[key]"
+
 [style.width.px]="columns[key].width"
+[style.left.px]="columns[key].positionX"
 
 (action)="onAction($event)"
 
