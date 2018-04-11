@@ -5,6 +5,12 @@ import * as ScrollActions from './store/actions/body/scroll.action';
 import { Subject } from 'rxjs';
 
 
+enum ScrollTypes {
+  VERTICAL = 'VERTICAL',
+  HORIZONTAL = 'HORIZONTAL',
+  NONE = 'NONE'
+}
+
 @Component({
   selector: 'no-datatable',
   templateUrl: './datatable.component.html',
@@ -44,6 +50,12 @@ export class DatatableComponent implements OnInit {
     return this._config;
   }
 
+  scrollState = {
+    left: 0,
+    top: 0
+  };
+
+
   @ViewChild('header') header: any;
   @ViewChild('search') search: any;
   @ViewChild('body') body: any;
@@ -59,6 +71,14 @@ export class DatatableComponent implements OnInit {
 
     this.store.setRows(this.tableData);
     // this.store.setColumns(this.columns.slice(0, 10));
+
+
+
+    this.scrollObj.debounceTime(50).distinctUntilChanged().subscribe(res => {
+
+      this.store.dispatch(res);
+
+    });
 
   }
 
@@ -100,17 +120,21 @@ export class DatatableComponent implements OnInit {
   onTableBodyScroll(event) {
     const tbody = this.body.el.nativeElement;
 
-    console.log(event);
+    const scrollType = this.scrollState.top !== tbody.scrollTop ? ScrollTypes.VERTICAL : (
+      this.scrollState.left !== tbody.scrollLeft ? ScrollTypes.HORIZONTAL : ScrollTypes.NONE
+    );
 
-    this.scrollSubject.next(new ScrollActions.VerticalScroll({
-      scrollTop: tbody.scrollTop, height: tbody.getBoundingClientRect().height
-    }));
+    this.scrollState = {
+      top: tbody.scrollTop,
+      left: tbody.scrollLeft
+    };
 
-    this.scrollObj.debounceTime(50).distinctUntilChanged().subscribe(res => {
 
-      this.store.dispatch(res);
-
-    });
+    if (scrollType === ScrollTypes.VERTICAL) {
+      this.scrollSubject.next(new ScrollActions.VerticalScroll({
+        scrollTop: tbody.scrollTop, height: tbody.getBoundingClientRect().height
+      }));
+    }
 
   }
 
