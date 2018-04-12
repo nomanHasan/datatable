@@ -20,6 +20,7 @@ export class TableBodyComponent implements OnInit {
   @Input() columns;
   @Input() visibleColumns;
   @Input() viewportColumns;
+  @Input() visibleWidth;
 
   constructor(
     public el: ElementRef

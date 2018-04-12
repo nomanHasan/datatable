@@ -3,6 +3,10 @@ class="table-footer__row row"
 [columns]="columns"
 [visibleColumns]="visibleColumns"
 [viewportColumns]="viewportColumns"
+
+[ngStyle]="{
+    'width': visibleWidth + 'px'
+}"
 >
 
 </no-footer-row>

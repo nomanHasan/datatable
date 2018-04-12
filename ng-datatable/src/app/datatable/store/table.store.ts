@@ -38,6 +38,7 @@ export class TableStore {
 
   setRows(rowsData) {
 
+    console.time('set row');
     const rows: RowState[] = this.schemaMapper.fromTabledata(rowsData);
 
     const {rowCollectionMap, visibleRows, viewportRows } = this.schemaMapper.flatMapRows(rows, 'index');
@@ -53,7 +54,7 @@ export class TableStore {
       }
     };
 
-    console.log(this.tableState.columns);
+    console.timeEnd('set row');
 
     if (this.tableState.columns) {
       this.tableStateSubject.next(this.tableState);
@@ -62,7 +63,7 @@ export class TableStore {
   }
 
   setColumns(cols) {
-    console.log(cols);
+    console.time('set col');
     const { columns, visibleColumns, viewportColumns } = this.schemaMapper.flattenColumns(cols);
 
     const scroll = {
@@ -83,6 +84,9 @@ export class TableStore {
       }, 0) + 50,
       scroll
     };
+
+
+    console.timeEnd('set col');
 
     if (this.tableState.rows ) {
       this.tableStateSubject.next(this.tableState);

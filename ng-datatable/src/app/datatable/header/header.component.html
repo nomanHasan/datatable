@@ -4,5 +4,11 @@ class="table-header__row row"
 [dividerConfig]="dividerConfig"
 [visibleColumns]="visibleColumns"
 [viewportColumns]="viewportColumns"
+
+[ngStyle]="{
+    'width': visibleWidth + 'px'
+}"
+
+
 (action)="onAction($event)"
 ></no-header-row>

@@ -69,7 +69,7 @@ export class DatatableComponent implements OnInit {
   ngOnInit() {
     this.store.tableState$.subscribe(res => console.log(res));
 
-    this.store.setRows(this.tableData);
+    // this.store.setRows(this.tableData);
     // this.store.setColumns(this.columns.slice(0, 10));
 
     this.scrollObj.debounceTime(50).distinctUntilChanged().subscribe(res => {
@@ -94,7 +94,7 @@ export class DatatableComponent implements OnInit {
   onBottomScroll(event) {
     const scrollLeft = event.target.scrollLeft;
 
-    // this.syncScrollLeft(scrollLeft);
+    this.syncScrollLeft(scrollLeft);
 
     const tbody = this.body.el.nativeElement;
 

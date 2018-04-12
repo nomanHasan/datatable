@@ -12,6 +12,7 @@ export class SearchComponent implements OnInit {
   @Input() columns;
   @Input() visibleColumns;
   @Input() viewportColumns;
+  @Input() visibleWidth;
 
 
   @Output() action = new EventEmitter<any>();

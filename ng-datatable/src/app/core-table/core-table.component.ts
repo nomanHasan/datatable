@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TableData } from '../table-data/table-data.model';
 import { createColumnWithConfig } from '../datatable/models/columns/column.factory';
+import * as localforage from 'localforage';
 
 @Component({
   selector: 'no-core-table',
@@ -10,10 +11,10 @@ import { createColumnWithConfig } from '../datatable/models/columns/column.facto
 export class CoreTableComponent implements OnInit {
 
 
-  rowNumber = 200;
-  columnNumber = 200;
+  rowNumber = 100000;
+  columnNumber = 1000;
 
-  combinedData = TableData.getTableData(this.rowNumber, this.columnNumber);
+  combinedData;
 
   tableData;
   columns;
@@ -22,14 +23,44 @@ export class CoreTableComponent implements OnInit {
 
   ngOnInit() {
 
-    this.tableData = this.combinedData.tableData;
 
-    this.columns = this.combinedData.columns.map(c => (
-      createColumnWithConfig({
+    console.time('GET TD');
+
+    const key = `${this.columnNumber}x${this.rowNumber}`;
+
+
+    (async () => {
+      const data = await localforage.getItem(key);
+
+      if (data) {
+        this.combinedData = data;
+      } else {
+        this.combinedData = TableData.getTableData(this.rowNumber, this.columnNumber);
+        await localforage.setItem(key, this.combinedData);
+      }
+    })().then(() => {
+      console.timeEnd('GET TD');
+
+      this.tableData = this.combinedData.tableData;
+
+
+      this.columns = this.combinedData.columns.map(c => (
+        createColumnWithConfig({
           name: c,
           width: 200
         })
       ));
+
+    });
+
+    // if (localStorage.getItem(key)) {
+    //   this.combinedData = JSON.parse(localStorage.getItem(key));
+    // } else {
+    //   this.combinedData = TableData.getTableData(this.rowNumber, this.columnNumber);
+    //   localStorage.setItem(key, JSON.stringify(this.combinedData));
+    // }
+
+
 
     // setInterval(() => {
     //   this.combinedData = TableData.getTableData(this.rowNumber, this.columnNumber);

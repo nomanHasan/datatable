@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit {
   @Input() dividerConfig: DividerConfig;
   @Input() visibleColumns;
   @Input() viewportColumns;
+  @Input() visibleWidth;
+
   @Output() action = new EventEmitter<any>();
 
   constructor(
