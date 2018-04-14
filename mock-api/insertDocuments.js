@@ -46,6 +46,7 @@ const rowSize = 100;
 
         if (rowCounter > batchSize) {
             const res = await collection.insertMany(rowBatch);
+            console.log(rowBatch);
             rowBatch = [];
             rowCounter = 0;
 
