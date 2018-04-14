@@ -89,7 +89,8 @@ const letter = string => {
 const DataGenerator = {
     getPlainArray,
     generateTableData,
-    word
+    word,
+    num
 };
 
 module.exports = DataGenerator;

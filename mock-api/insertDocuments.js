@@ -1,13 +1,15 @@
 const client = require('./db/client');
 const randomWords = require('random-words');
+const datagen = require('./data-generator');
+const primes = require('./primes');
 const fs = require('fs');
 
 
-const rowSize = 1000;
+const rowSize = 100;
 
 
 (async () => {
-    
+
 
     const db = await client;
     var dbo = db.db('datatable');
@@ -24,11 +26,17 @@ const rowSize = 1000;
     let batchCounter = 0;
 
     for (let i = 0; i < rowSize; i++) {
-        
+
         let rowData = {};
         columns.forEach((c, index) => {
             c = c.replace(/[\n\t ]/i, '');
-            rowData[c] = randomWords();
+
+            if(primes.includes(index)) {
+                rowData[c] = datagen.num(index);
+            } else {
+                rowData[c] = randomWords();
+            }
+
         });
 
         rowBatch.push(rowData);
