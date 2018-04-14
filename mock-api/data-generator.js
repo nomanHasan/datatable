@@ -1,4 +1,5 @@
 const randomWords = require('random-words');
+const R = require('ramda');
 
 const range = (length) => {
     return Array.from(Array(length).fill(0));
@@ -18,7 +19,7 @@ const getPlainArray = (row, col) => {
     return tableData;
 };
 
-const generateTableData = async (row, col) => {
+const generateTableData = async(row, col) => {
     const tableData = [];
 
     const cols = ['index'];
@@ -27,13 +28,13 @@ const generateTableData = async (row, col) => {
         cols.push(randomWords());
     });
 
-    range(row).forEach(async (r, i) => {
+    range(row).forEach(async(r, i) => {
         let rowData = {};
         rowData = {
             'index': i
         };
 
-        cols.forEach(async (c, index) => {
+        cols.forEach(async(c, index) => {
             if (c === 'index') {
                 return;
             }
@@ -48,7 +49,6 @@ const generateTableData = async (row, col) => {
     return {tableData, columns: cols};
 };
 
-
 const word = length => {
 
     if (!length) {
@@ -60,14 +60,23 @@ const word = length => {
 
     let text = '';
 
-    Array(length).fill(0).forEach(element => {
-        text += Math.random() > 0.7 ? letter(vowels) : letter(constants);
-    });
+    Array(length)
+        .fill(0)
+        .forEach(element => {
+            text += constants.includes(R.last(text))
+                ? (Math.random() > 0.8
+                    ? letter(constants)
+                    : letter(vowels))
+                : ((Math.random() > 0.45)
+                    ? letter(vowels)
+                    : letter(constants));
+        });
 
-    text = text.slice(0, 1).toUpperCase() + text.slice(1);
+    text = text
+        .slice(0, 1)
+        .toUpperCase() + text.slice(1);
     return text;
 };
-
 
 const num = (max, min = 0) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -76,8 +85,6 @@ const num = (max, min = 0) => {
 const letter = string => {
     return string[num(string.length - 1)];
 };
-
-
 
 const DataGenerator = {
     getPlainArray,

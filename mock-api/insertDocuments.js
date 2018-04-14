@@ -3,7 +3,7 @@ const randomWords = require('random-words');
 const fs = require('fs');
 
 
-const rowSize = 10000;
+const rowSize = 1000;
 
 
 (async () => {
@@ -12,18 +12,9 @@ const rowSize = 10000;
     const db = await client;
     var dbo = db.db('datatable');
 
-    // const res = await dbo.createCollection('tabledata');
-
-
     const collection = dbo.collection('tabledata');
 
-    // await collection.deleteMany();
-
-    const columns = ['index'];
-
-    const columnString = fs.readFileSync('columns.txt', 'utf8');
-
-    columns.push(...columnString.split(','));
+    const columns = fs.readFileSync('columns.txt', 'utf8').split(',');
 
     const colSize = columns.length;
 
@@ -35,18 +26,15 @@ const rowSize = 10000;
     for (let i = 0; i < rowSize; i++) {
         
         let rowData = {};
-        rowData = {
-            'index': i
-        };
         columns.forEach((c, index) => {
-            if (c === 'index') {
-                return;
-            }
+            c = c.replace(/[\n\t ]/i, '');
             rowData[c] = randomWords();
         });
 
         rowBatch.push(rowData);
         rowCounter++;
+
+        console.log(i);
 
         if (rowCounter > batchSize) {
             const res = await collection.insertMany(rowBatch);
@@ -54,8 +42,6 @@ const rowSize = 10000;
             rowCounter = 0;
 
             batchCounter++;
-            console.log('Inserted Batch', batchCounter);
         }
-
     };
 })();
