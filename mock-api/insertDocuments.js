@@ -5,7 +5,7 @@ const primes = require('./primes');
 const fs = require('fs');
 
 
-const rowSize = 100;
+const rowSize = 10000;
 
 
 (async () => {
@@ -46,7 +46,7 @@ const rowSize = 100;
 
         if (rowCounter > batchSize) {
             const res = await collection.insertMany(rowBatch);
-            console.log(rowBatch);
+            console.log('Batch Inserted', batchCounter);
             rowBatch = [];
             rowCounter = 0;
 
