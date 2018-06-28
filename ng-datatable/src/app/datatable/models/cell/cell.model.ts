@@ -6,7 +6,6 @@ export interface Cell {
     metadata?: any;
 }
 
-
 export type CellCollectionMap = {
     [key: string]: CellState
 }[];

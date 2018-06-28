@@ -115,7 +115,4 @@ export class TableStore {
     console.log(this.tableState, action);
     this.tableStateSubject.next(this.tableState);
   }
-
-
-
 }

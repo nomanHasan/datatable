@@ -11,8 +11,8 @@ import * as localforage from 'localforage';
 export class CoreTableComponent implements OnInit {
 
 
-  rowNumber = 55;
-  columnNumber = 1000;
+  rowNumber = 500000;
+  columnNumber = 10;
 
   combinedData;
 
@@ -36,6 +36,7 @@ export class CoreTableComponent implements OnInit {
         this.combinedData = data;
       } else {
         this.combinedData = TableData.getTableData(this.rowNumber, this.columnNumber);
+        console.log('Data Generation Succesfull', this.combinedData);
         await localforage.setItem(key, this.combinedData);
       }
     })().then(() => {
@@ -47,7 +48,7 @@ export class CoreTableComponent implements OnInit {
       this.columns = this.combinedData.columns.map(c => (
         createColumnWithConfig({
           name: c,
-          width: 200
+          width: 400
         })
       ));
 

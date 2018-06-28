@@ -87,6 +87,9 @@ const getTableData = (row, col) => {
             };
         });
         tableData.push(rowData);
+        if (i % 10000 === 0) {
+            console.log('Row Generated: ', i);
+        }
     });
     return {tableData, columns: cols};
 };

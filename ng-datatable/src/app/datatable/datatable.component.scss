@@ -49,10 +49,13 @@
   .table-body__row {
 
     display: flex;
-    width: fit-content;
     white-space: nowrap;
 
     position: absolute;
+
+    
+    height: 40px;
+    width: 200250px;
 
     .table-body__cell {
 

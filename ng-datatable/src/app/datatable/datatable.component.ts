@@ -152,7 +152,6 @@ export class DatatableComponent implements OnInit {
       left: tbody.scrollLeft
     };
 
-
     if (scrollType === ScrollTypes.VERTICAL) {
       this.scrollSubject.next(new ScrollActions.VerticalScroll({
         scrollTop: tbody.scrollTop, height: tbody.getBoundingClientRect().height
