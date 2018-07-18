@@ -5,6 +5,8 @@ import { columnsReducer } from './column/columns.reducer';
 import { rowsReducer } from './rows/rows.reducer';
 import { reorderArray } from '../analyzers/reorder';
 import * as ScrollActions from '../actions/body/scroll.action';
+import { Column, ColumnCollectionMap } from '../../models/columns/column.model';
+import { summaryFileName } from '@angular/compiler/src/aot/util';
 
 export function tableReducer(
     state = initializeTableState(),
@@ -67,6 +69,37 @@ export function tableReducer(
                 ...state,
                 viewportColumns
             };
+        }
+
+        case ColumnActions.COLUMN_RESIZE: {
+            const payload = (action as ColumnActions.ResizeColumn).payload;
+
+            const columnWidth = payload.dividerState.left + payload.dividerState.leftOffset
+            
+            let accm = 0;
+
+            const columns = state.visibleColumns.map(e => {
+
+                const c: Column = state.columns[e];
+
+                if (e === payload.column.name) {
+                    c.width = columnWidth;
+                }
+                c.positionX = accm;
+
+                accm += c.width;
+
+                return c;
+            }).reduce((accum, cur) => {
+                accum[cur.name] = cur;
+                return accum;
+            }, {} as ColumnCollectionMap)
+
+            return {
+                ...state,
+                columns
+            };
+
         }
     }
 

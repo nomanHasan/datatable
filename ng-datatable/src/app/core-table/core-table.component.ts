@@ -48,7 +48,7 @@ export class CoreTableComponent implements OnInit {
       this.columns = this.combinedData.columns.map(c => (
         createColumnWithConfig({
           name: c,
-          width: 400
+          width: 200
         })
       ));
 
