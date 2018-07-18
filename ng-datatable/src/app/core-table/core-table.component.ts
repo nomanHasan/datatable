@@ -11,8 +11,8 @@ import * as localforage from 'localforage';
 export class CoreTableComponent implements OnInit {
 
 
-  rowNumber = 500000;
-  columnNumber = 10;
+  rowNumber = 5000;
+  columnNumber = 100;
 
   combinedData;
 
