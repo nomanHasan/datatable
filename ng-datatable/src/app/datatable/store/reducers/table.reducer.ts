@@ -7,6 +7,7 @@ import { reorderArray } from '../analyzers/reorder';
 import * as ScrollActions from '../actions/body/scroll.action';
 import { Column, ColumnCollectionMap } from '../../models/columns/column.model';
 import { summaryFileName } from '@angular/compiler/src/aot/util';
+import { Sides } from '../../models/columns/sides.model';
 
 export function tableReducer(
     state = initializeTableState(),
@@ -15,20 +16,20 @@ export function tableReducer(
     const newState = state;
 
     switch (action.type) {
-        case ColumnActions.MOVE_COLUMN: {
-            const payload = action.payload;
+        // case ColumnActions.MOVE_COLUMN: {
+        //     const payload = action.payload;
 
-            const target = state.visibleColumns.findIndex(c => c === payload.target.name);
-            const source = state.visibleColumns.findIndex(c => c === payload.source.name);
+        //     const target = state.visibleColumns.findIndex(c => c === payload.target.name);
+        //     const source = state.visibleColumns.findIndex(c => c === payload.source.name);
 
-            const visibleColumns = reorderArray(state.visibleColumns, source, target);
+        //     const visibleColumns = reorderArray(state.visibleColumns, source, target);
 
-            return {
-                ...state,
-                visibleColumns: visibleColumns,
-                viewportColumns: visibleColumns,
-            };
-        }
+        //     return {
+        //         ...state,
+        //         visibleColumns: visibleColumns,
+        //         viewportColumns: visibleColumns,
+        //     };
+        // }
 
         case ScrollActions.VERTICAL_SCROLL: {
             const payload = (action as ScrollActions.VerticalScroll).payload;
@@ -93,13 +94,41 @@ export function tableReducer(
             }).reduce((accum, cur) => {
                 accum[cur.name] = cur;
                 return accum;
-            }, {} as ColumnCollectionMap)
+            }, {} as ColumnCollectionMap);
 
             return {
                 ...state,
                 columns
             };
 
+        }
+
+
+        case ColumnActions.MOVE_COLUMN: {
+            const payload = (action as ColumnActions.MoveColumn).payload;
+
+            const diff = payload.side === Sides.Right ? 1: 0;
+            let vc = state.visibleColumns.slice();
+
+            const targetIndexInVisibleColumn = state.visibleColumns.findIndex(e => e === payload.target.name);
+            const sourceIndexInVisibleColumn = state.visibleColumns.findIndex(e => e === payload.source.name);
+
+            if (targetIndexInVisibleColumn >= 0 && sourceIndexInVisibleColumn >= 0) {
+                // vc.splice(targetIndexInVisibleColumn + diff, 0, payload.source.name);
+                vc = reorderArray(vc, sourceIndexInVisibleColumn, targetIndexInVisibleColumn + diff);
+            } else if (targetIndexInVisibleColumn && !sourceIndexInVisibleColumn) {
+                console.log('Source not in Visible Columns');
+            }
+
+            const newState = recalculateColumnPositions({
+                ...state,
+                visibleColumns: vc,
+                viewportColumns: vc
+            });
+
+            console.log(vc);
+
+            return newState;
         }
     }
 
@@ -111,3 +140,24 @@ export function tableReducer(
     };
 }
 
+const recalculateColumnPositions = (state: TableState): TableState => {
+    let accm = 0;
+    console.log(state.visibleColumns);
+
+    return {
+        ...state,
+        columns: state.visibleColumns.map(e => {
+
+            const c: Column = state.columns[e];
+    
+            c.positionX = accm;
+    
+            accm += c.width;
+    
+            return c;
+        }).reduce((accum, cur) => {
+            accum[cur.name] = cur;
+            return accum;
+        }, {} as ColumnCollectionMap)
+    };
+}

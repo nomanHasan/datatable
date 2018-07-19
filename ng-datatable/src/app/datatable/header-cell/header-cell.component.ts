@@ -8,6 +8,7 @@ import { SortDirections, toggleSortDirection } from '../models/sort/sort-directi
 import { TableStore } from '../store/table.store';
 import { SortColumn, ResizeColumn, MoveColumn } from '../store/actions/column.action';
 import { DividerConfig } from '../models/columns/divider-config.model';
+import { Sides } from '../models/columns/sides.model';
 
 @Component({
   selector: 'no-header-cell',
@@ -158,7 +159,8 @@ export class HeaderCellComponent implements OnInit {
 
     this.action.emit(new MoveColumn({
       target: this.column,
-      source: source
+      source: source,
+      side: Sides.Left
     }));
   }
 

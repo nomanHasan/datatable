@@ -2,6 +2,7 @@ import { Column } from '../../models/columns/column.model';
 import { SortDirections } from '../../models/sort/sort-direction.model';
 import { DividerState } from '../../models/columns/divider-state.model';
 import { Action } from './action.model';
+import { Sides } from '../../models/columns/sides.model';
 
 export const COLUMN_RESIZE = 'COLUMN_RESIZE';
 export const COLUMN_SORT = 'COLUMN_SORT';
@@ -39,11 +40,11 @@ export class MoveColumn implements Action {
 
     constructor(public payload: {
         target?: Column,
-        source: Column
+        source: Column,
+        side: Sides
     }) {
-
+        
     }
 }
-
 
 export type All = SortColumn | ResizeColumn | MoveColumn;

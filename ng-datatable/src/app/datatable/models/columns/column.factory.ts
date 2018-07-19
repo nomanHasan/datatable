@@ -2,12 +2,7 @@
 import { Column } from './column.model';
 import { defaultDividerState } from './divider-state.model';
 import { SortDirections } from '../sort/sort-direction.model';
-
-export const LEFT = 'left';
-
-export const RIGHT = 'right';
-
-export const CENTER = 'center';
+import { Sides } from './sides.model';
 
 export const EMPTY = '';
 
@@ -18,7 +13,7 @@ export function createColumn(
     width: number = 200,
     displayValue: string = EMPTY,
     editable: boolean = true,
-    alignment: string = LEFT,
+    alignment: string = Sides.Left,
     format = {
         value: 'plain'
     },
@@ -45,7 +40,7 @@ export function createColumnWithConfig({
     width = 0,
     displayValue = EMPTY,
     editable = true,
-    alignment = LEFT,
+    alignment = Sides.Left,
     format = {
         value: 'plain'
     },
